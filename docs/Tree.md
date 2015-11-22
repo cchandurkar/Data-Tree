@@ -96,7 +96,7 @@ Inserts node to a particular node present in the tree. Particular node here is a
 Searches a tree in BFS fashion. Requires a search criteria to be provided.
 
 **Kind**: global function  
-**Returns**: <code>object</code> - - first [TreeNode](TreeNode) in tree that matches the given criteria.  
+**Returns**: <code>object</code> - first [TreeNode](../src/TreeNode) in tree that matches the given criteria.  
 
 | Param | Type | Description |
 | --- | --- | --- |

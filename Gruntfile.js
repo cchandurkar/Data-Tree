@@ -49,10 +49,6 @@ module.exports = function(grunt) {
             { src: "src/traverser.js", dest: "docs/traverser.md" },
           ]
         },
-        allInOne: {
-          src: "src/*.js",
-          dest: "docs/README.md",
-        },
       }
 
     });

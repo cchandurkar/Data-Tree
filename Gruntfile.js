@@ -44,9 +44,9 @@ module.exports = function(grunt) {
       jsdoc2md: {
         separateOutputFilePerInput: {
           files: [
-            { src: "src/tree.js", dest: "docs/tree.md" },
-            { src: "src/tree-node.js", dest: "docs/tree-node.md" },
-            { src: "src/traverser.js", dest: "docs/traverser.md" },
+            { src: "src/tree.js", dest: "docs/Tree.md" },
+            { src: "src/tree-node.js", dest: "docs/TreeNode.md" },
+            { src: "src/traverser.js", dest: "docs/Traverser.md" },
           ]
         },
       }

@@ -1,7 +1,7 @@
 {
   "name": "data-tree",
-  "version": "1.0.0",
-  "description": "Data oriented tree structure that enlishes the power of callbacks to create, search and traverse tree.",
+  "version": "1.0.2",
+  "description": "Data oriented tree structure that enlishes the power of callbacks to create, search and traverse the tree.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,5 +24,12 @@
   "bugs": {
     "url": "https://github.com/cchandurkar/Data-Tree/issues"
   },
-  "homepage": "https://github.com/cchandurkar/Data-Tree#readme"
+  "homepage": "https://github.com/cchandurkar/Data-Tree#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^4.0.1",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-uglify": "^0.10.1",
+    "grunt-contrib-watch": "^0.6.1"
+  }
 }

@@ -20,7 +20,8 @@ module.exports = (function(){
     // Find node recursively
     (function recur(node){
       if(node.matchCriteria(criteria)){
-        return foundNode = node;
+        foundNode = node;
+        return foundNode;
       } else {
         node._childNodes.some(recur);
       }
@@ -44,9 +45,9 @@ module.exports = (function(){
 
     // Find nodes recursively
     (function recur(node){
-      console.log("node", node._data)
       if(node.matchCriteria(criteria)){
-        return foundNode = node;
+        foundNode = node;
+        return foundNode;
       } else {
         node._childNodes.some(recur);
       }

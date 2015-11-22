@@ -17,6 +17,7 @@ module.exports = (function(){
       this._currentNode._childNodes.push(node);
       this._currentNode = node;
     }
+    return node;
   };
 
   Tree.prototype.remove = function(node, removeChildren){
@@ -69,7 +70,7 @@ module.exports = (function(){
 
   Tree.prototype.insertTo = function(criteria, data){
     var node = this.searchDFS(criteria);
-    this.insertToNode(node, data)
+    return this.insertToNode(node, data);
   };
 
   Tree.prototype.insertToNode = function(node, data){
@@ -77,6 +78,7 @@ module.exports = (function(){
     newNode._parentNode = node;
     node._childNodes.push(newNode);
     this._currentNode = newNode;
+    return newNode;
   };
 
   Tree.prototype.searchBFS = function(criteria){

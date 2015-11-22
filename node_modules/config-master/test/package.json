@@ -1,0 +1,7 @@
+{
+  "name": "config-master",
+  "config": {
+    "one": "einen",
+    "four": "package"
+  }
+}

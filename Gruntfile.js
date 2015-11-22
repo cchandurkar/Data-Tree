@@ -40,6 +40,17 @@ module.exports = function(grunt) {
         },
       },
 
+      // JSDoc to Github markdown
+      jsdoc2md: {
+        separateOutputFilePerInput: {
+          files: [
+            { src: "src/tree.js", dest: "docs/tree.md" },
+            { src: "src/tree-node.js", dest: "docs/tree-node.md" },
+            { src: "src/traverser.js", dest: "docs/traverser.md" },
+          ]
+        },
+      }
+
     });
 
   // Load the plugin that provides the "uglify" task.
@@ -47,9 +58,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-jsdoc-to-markdown');
 
   // Default task(s).
-  grunt.registerTask('build', ['jshint', 'browserify', 'uglify:min']);
+  grunt.registerTask('build', ['jshint', 'browserify', 'uglify:min', 'jsdoc2md']);
   grunt.registerTask('default', ['build']);
 
 };

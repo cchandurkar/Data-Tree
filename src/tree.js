@@ -173,7 +173,7 @@ module.exports = (function(){
    * @param {function} criteria - Callback function that specifies the search criteria.
    * Criteria callback here receives {@link TreeNode#_data} in parameter and MUST return boolean
    * indicating whether that data satisfies your criteria.
-   * @return {object} - first {@link TreeNode} in tree that matches the given criteria.
+   * @return {object} first {@link ../src/TreeNode TreeNode} in tree that matches the given criteria.
    */
   Tree.prototype.searchBFS = function(criteria){
     return this.traverser().searchBFS(criteria);

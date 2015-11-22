@@ -20,11 +20,10 @@ module.exports = (function(){
    * Represents a traverser which traverses the tree.
    *
    * @class
-   * @kind class
    * @constructor
-   * @param {object} tree - instance of {@link Tree} which has to be traversed.
+   * @classdesc Represents a traverser which traverses the tree.has to be traversed.
    */
-  var Traverser = function(tree){
+  function Traverser(tree){
 
     if(!tree)
     throw new Error('Could not find a tree that is to be traversed');
@@ -38,7 +37,7 @@ module.exports = (function(){
      */
     this._tree = tree;
 
-  };
+  }
 
   /**
    * Traverses an entire tree in DFS fashion.
@@ -145,21 +144,47 @@ module.exports = (function(){
    * Represents a node in the tree.
    *
    * @class
-   * @kind class
+   * @classdesc Represents a node in the tree.
    * @constructor
    * @param {object} data - that is to be stored in a node
    */
-  var TreeNode = function(data){
+  function TreeNode(data){
+
+    /**
+     * Represents the parent node
+     *
+     * @property _parentNode
+     * @type {object}
+     * @default "null"
+     */
     this._parentNode = null;
+
+    /**
+     * Represents the child nodes
+     *
+     * @property _childNodes
+     * @type {array}
+     * @default "[]"
+     */
     this._childNodes = [];
+
+    /**
+     * Represents the data node has
+     *
+     * @property _data
+     * @type {object}
+     * @default "null"
+     */
     this._data = data;
-  };
+    
+  }
 
   /**
    * Indicates whether this node matches the specified criteria. It triggers a callback criteria function that returns something.
    *
    * @method traverseDFS
    * @kind function
+   * @memberof TreeNode
    * @param {function} callback - Callback function that specifies some criteria. It receives {@link TreeNode#_data} in parameter and expects different values in different scenarios.
    * `matchCriteria` is used by following functions and expects:
    * 1. {@link Tree#searchBFS} - {boolean} in return indicating whether given node satisfies criteria.
@@ -189,11 +214,11 @@ module.exports = (function(){
   /**
    * Represents the tree in which data nodes can be inserted
    *
-   * @class
-   * @kind class
+   * @class Tree
+   * @classdesc Represents the tree in which data nodes can be inserted
    * @constructor
    */
-  var Tree = function(){
+   function Tree(){
 
     /**
      * Represents the root node of the tree.
@@ -219,17 +244,19 @@ module.exports = (function(){
      *
      * @property _traverser
      * @type {object}
+     * @instance
      * @default {@link Traverser}
      */
     this._traverser = new Traverser(this);
 
-  };
+  }
 
   /**
    * Inserts a node in tree and updates `_currentNode` to newly inserted node.
    *
    * @method insert
    * @kind function
+   * @protected
    * @param {object} data - data that has to be stored in tree-node.
    * @return {object} - instance of {@link TreeNode} that represents node inserted.
    */
@@ -421,7 +448,7 @@ module.exports = (function(){
    *
    * @method export
    * @kind function
-   * @param {object} criteria - Callback function that receives {@link TreeNode#_data} in parameter
+   * @param {Tree~criteriaCallback} criteria - Callback function that receives {@link TreeNode#_data} in parameter
    * and MUST return a formatted data that has to be exported. A new property "children" is added to object returned
    * that maintains the heirarchy of nodes.
    * @return {object} - {@link TreeNode}.
@@ -448,6 +475,14 @@ module.exports = (function(){
 
     return recur_export(this._rootNode);
   };
+
+
+  /**
+   * This callback is displayed as part of the Requester class.
+   * @callback Tree~criteriaCallback
+   * @param {object} data in a node
+   */
+
 
   return Tree;
 

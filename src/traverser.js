@@ -12,11 +12,10 @@ module.exports = (function(){
    * Represents a traverser which traverses the tree.
    *
    * @class
-   * @kind class
    * @constructor
-   * @param {object} tree - instance of {@link Tree} which has to be traversed.
+   * @classdesc Represents a traverser which traverses the tree.has to be traversed.
    */
-  var Traverser = function(tree){
+  function Traverser(tree){
 
     if(!tree)
     throw new Error('Could not find a tree that is to be traversed');
@@ -30,7 +29,7 @@ module.exports = (function(){
      */
     this._tree = tree;
 
-  };
+  }
 
   /**
    * Traverses an entire tree in DFS fashion.

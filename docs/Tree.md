@@ -1,3 +1,9 @@
+## Classes
+<dl>
+<dt><a href="#Tree">Tree</a></dt>
+<dd><p>Represents the tree in which data nodes can be inserted</p>
+</dd>
+</dl>
 ## Functions
 <dl>
 <dt><a href="#insert">insert(data)</a> ⇒ <code>object</code></dt>
@@ -38,12 +44,37 @@ in the tree based on the criteria provided.</p>
 <dd><p>Exports the tree in format specified.</p>
 </dd>
 </dl>
+<a name="Tree"></a>
+## Tree
+Represents the tree in which data nodes can be inserted
+
+**Kind**: global class  
+
+* [Tree](#Tree)
+  * [new Tree()](#new_Tree_new)
+  * [~criteriaCallback](#Tree..criteriaCallback) : <code>function</code>
+
+<a name="new_Tree_new"></a>
+### new Tree()
+Represents the tree in which data nodes can be inserted
+
+<a name="Tree..criteriaCallback"></a>
+### Tree~criteriaCallback : <code>function</code>
+This callback is displayed as part of the Requester class.
+
+**Kind**: inner typedef of <code>[Tree](#Tree)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| data | <code>object</code> | in a node |
+
 <a name="insert"></a>
 ## insert(data) ⇒ <code>object</code>
 Inserts a node in tree and updates `_currentNode` to newly inserted node.
 
 **Kind**: global function  
 **Returns**: <code>object</code> - - instance of [TreeNode](TreeNode) that represents node inserted.  
+**Access:** protected  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -164,5 +195,5 @@ Exports the tree in format specified.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| criteria | <code>object</code> | Callback function that receives [TreeNode#_data](TreeNode#_data) in parameter and MUST return a formatted data that has to be exported. A new property "children" is added to object returned that maintains the heirarchy of nodes. |
+| criteria | <code>[criteriaCallback](#Tree..criteriaCallback)</code> | Callback function that receives [TreeNode#_data](TreeNode#_data) in parameter and MUST return a formatted data that has to be exported. A new property "children" is added to object returned that maintains the heirarchy of nodes. |
 

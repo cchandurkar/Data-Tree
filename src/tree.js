@@ -12,11 +12,11 @@ module.exports = (function(){
   /**
    * Represents the tree in which data nodes can be inserted
    *
-   * @class
-   * @kind class
+   * @class Tree
+   * @classdesc Represents the tree in which data nodes can be inserted
    * @constructor
    */
-  var Tree = function(){
+   function Tree(){
 
     /**
      * Represents the root node of the tree.
@@ -42,17 +42,19 @@ module.exports = (function(){
      *
      * @property _traverser
      * @type {object}
+     * @instance
      * @default {@link Traverser}
      */
     this._traverser = new Traverser(this);
 
-  };
+  }
 
   /**
    * Inserts a node in tree and updates `_currentNode` to newly inserted node.
    *
    * @method insert
    * @kind function
+   * @protected
    * @param {object} data - data that has to be stored in tree-node.
    * @return {object} - instance of {@link TreeNode} that represents node inserted.
    */
@@ -244,7 +246,7 @@ module.exports = (function(){
    *
    * @method export
    * @kind function
-   * @param {object} criteria - Callback function that receives {@link TreeNode#_data} in parameter
+   * @param {Tree~criteriaCallback} criteria - Callback function that receives {@link TreeNode#_data} in parameter
    * and MUST return a formatted data that has to be exported. A new property "children" is added to object returned
    * that maintains the heirarchy of nodes.
    * @return {object} - {@link TreeNode}.
@@ -271,6 +273,14 @@ module.exports = (function(){
 
     return recur_export(this._rootNode);
   };
+
+
+  /**
+   * This callback is displayed as part of the Requester class.
+   * @callback Tree~criteriaCallback
+   * @param {object} data in a node
+   */
+
 
   return Tree;
 

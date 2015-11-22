@@ -36,7 +36,7 @@ module.exports = (function(){
    * Traverses an entire tree in DFS fashion.
    *
    * @method traverseDFS
-   * @kind member
+   * @kind function
    * @param {function} callback - Gets triggered when @{link TreeNode} is explored. Explored node is passed as parameter to callback.
    */
   Traverser.prototype.traverseDFS = function(callback){
@@ -50,7 +50,7 @@ module.exports = (function(){
    * Searches a tree in DFS fashion. Requires a search criteria to be provided.
    *
    * @method searchBFS
-   * @kind member
+   * @kind function
    * @param {function} criteria - MUST BE a callback function that specifies the search criteria.
    * Criteria callback here receives {@link TreeNode#_data} in parameter and MUST return boolean
    * indicating whether that data satisfies your criteria.
@@ -78,7 +78,7 @@ module.exports = (function(){
    * Traverses an entire tree in BFS fashion.
    *
    * @method traverseBFS
-   * @kind member
+   * @kind function
    * @param {function} callback - Gets triggered when node is explored. Explored node is passed as parameter to callback.
    */
   Traverser.prototype.traverseBFS = function(callback){
@@ -93,7 +93,7 @@ module.exports = (function(){
    * Searches a tree in BFS fashion. Requires a search criteria to be provided.
    *
    * @method searchBFS
-   * @kind member
+   * @kind function
    * @param {function} criteria - MUST BE a callback function that specifies the search criteria.
    * Criteria callback here receives {@link TreeNode#_data} in parameter and MUST return boolean
    * indicating whether that data satisfies your criteria.

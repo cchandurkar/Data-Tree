@@ -1,8 +1,8 @@
 <a name="traverseDFS"></a>
-## traverseDFS
+## traverseDFS(callback)
 Indicates whether this node matches the specified criteria. It triggers a callback criteria function that returns something.
 
-**Kind**: global variable  
+**Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |

@@ -26,7 +26,7 @@ module.exports = (function(){
    * Indicates whether this node matches the specified criteria. It triggers a callback criteria function that returns something.
    *
    * @method traverseDFS
-   * @kind member
+   * @kind function
    * @param {function} callback - Callback function that specifies some criteria. It receives {@link TreeNode#_data} in parameter and expects different values in different scenarios.
    * `matchCriteria` is used by following functions and expects:
    * 1. {@link Tree#searchBFS} - {boolean} in return indicating whether given node satisfies criteria.

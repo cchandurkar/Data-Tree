@@ -52,7 +52,7 @@ module.exports = (function(){
    * Inserts a node in tree and updates `_currentNode` to newly inserted node.
    *
    * @method insert
-   * @kind member
+   * @kind function
    * @param {object} data - data that has to be stored in tree-node.
    * @return {object} - instance of {@link TreeNode} that represents node inserted.
    */
@@ -72,7 +72,7 @@ module.exports = (function(){
    * Removes a node from tree and updates `_currentNode` to parent node of node removed.
    *
    * @method remove
-   * @kind member
+   * @kind function
    * @param {object} node - {@link TreeNode} that has to be removed.
    * @param {boolean} trim - indicates whether to remove entire branch from the specified node.
    */
@@ -124,7 +124,7 @@ module.exports = (function(){
    * Getter function that returns {@link Traverser}.
    *
    * @method traverser
-   * @kind member
+   * @kind function
    * @return {@link Traverser} for the tree.
    */
   Tree.prototype.traverser = function(){
@@ -136,7 +136,7 @@ module.exports = (function(){
    * in the tree based on the criteria provided.
    *
    * @method insertTo
-   * @kind member
+   * @kind function
    * @param {function} criteria - Callback function that specifies the search criteria
    * for node to which new node is to be inserted. Criteria callback here receives {@link TreeNode#_data}
    * in parameter and MUST return boolean indicating whether that data satisfies your criteria.
@@ -152,7 +152,7 @@ module.exports = (function(){
    * Inserts node to a particular node present in the tree. Particular node here is an instance of {@link TreeNode}
    *
    * @method insertToNode
-   * @kind member
+   * @kind function
    * @param {function} node -  {@link TreeNode} to which data node is to be inserted.
    * @param {object} data - that has to be stored in tree-node.
    * @return {object} - instance of {@link TreeNode} that represents node inserted.
@@ -169,7 +169,7 @@ module.exports = (function(){
    * Searches a tree in BFS fashion. Requires a search criteria to be provided.
    *
    * @method searchBFS
-   * @kind member
+   * @kind function
    * @param {function} criteria - Callback function that specifies the search criteria.
    * Criteria callback here receives {@link TreeNode#_data} in parameter and MUST return boolean
    * indicating whether that data satisfies your criteria.
@@ -183,7 +183,7 @@ module.exports = (function(){
    * Searches a tree in DFS fashion. Requires a search criteria to be provided.
    *
    * @method searchBFS
-   * @kind member
+   * @kind function
    * @param {function} criteria - Callback function that specifies the search criteria.
    * Criteria callback here receives {@link TreeNode#_data} in parameter and MUST return boolean
    * indicating whether that data satisfies your criteria.
@@ -197,7 +197,7 @@ module.exports = (function(){
    * Traverses an entire tree in DFS fashion.
    *
    * @method traverseDFS
-   * @kind member
+   * @kind function
    * @param {function} callback - Gets triggered when node is explored. Explored node is passed as parameter to callback.
    */
   Tree.prototype.traverseDFS = function(callback){
@@ -208,7 +208,7 @@ module.exports = (function(){
    * Traverses an entire tree in BFS fashion.
    *
    * @method traverseBFS
-   * @kind member
+   * @kind function
    * @param {function} callback - Gets triggered when node is explored. Explored node is passed as parameter to callback.
    */
   Tree.prototype.traverseBFS = function(callback){
@@ -219,7 +219,7 @@ module.exports = (function(){
    * Get all child nodes of {@linl TreeNode} specified.
    *
    * @method getChildNodesOf
-   * @kind member
+   * @kind function
    * @param {object} - {@link TreeNode} of which child nodes are to be accessed.
    * @return {array} - array of {@link TreeNode}s.
    */
@@ -231,7 +231,7 @@ module.exports = (function(){
    * Get parent node of {@linl TreeNode} specified.
    *
    * @method getParentNodeOf
-   * @kind member
+   * @kind function
    * @param {object} - {@link TreeNode} of which parent node is to be accessed.
    * @return {object} - {@link TreeNode}.
    */
@@ -243,7 +243,7 @@ module.exports = (function(){
    * Exports the tree in format specified.
    *
    * @method export
-   * @kind member
+   * @kind function
    * @param {object} criteria - Callback function that receives {@link TreeNode#_data} in parameter
    * and MUST return a formatted data that has to be exported. A new property "children" is added to object returned
    * that maintains the heirarchy of nodes.

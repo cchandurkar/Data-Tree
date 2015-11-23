@@ -408,7 +408,7 @@ module.exports = (function(){
    * }, greenApple);
    */
   Tree.prototype.insertTo = function(criteria, data){
-    var node = this.searchDFS(criteria);
+    var node = this.traverser().searchDFS(criteria);
     return this.insertToNode(node, data);
   };
 

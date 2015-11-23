@@ -1,0 +1,104 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@3.4.0
+3 info using node@v5.0.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/home/cchandurkar/Academics/Research/Tree-Traversal',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/cchandurkar/.npm/data-tree/1.1.1/package.tgz not in flight; packing
+9 info lifecycle data-tree@1.1.1~prepublish: data-tree@1.1.1
+10 silly lifecycle data-tree@1.1.1~prepublish: no script for prepublish, continuing
+11 verbose tar pack [ '/home/cchandurkar/.npm/data-tree/1.1.1/package.tgz',
+11 verbose tar pack   '/home/cchandurkar/Academics/Research/Tree-Traversal' ]
+12 verbose tarball /home/cchandurkar/.npm/data-tree/1.1.1/package.tgz
+13 verbose folder /home/cchandurkar/Academics/Research/Tree-Traversal
+14 verbose addLocalTarball adding from inside cache /home/cchandurkar/.npm/data-tree/1.1.1/package.tgz
+15 silly cache afterAdd data-tree@1.1.1
+16 verbose afterAdd /home/cchandurkar/.npm/data-tree/1.1.1/package/package.json not in flight; writing
+17 verbose afterAdd /home/cchandurkar/.npm/data-tree/1.1.1/package/package.json written
+18 silly publish { name: 'data-tree',
+18 silly publish   version: '1.1.1',
+18 silly publish   description: 'Data oriented tree structure that enlishes the power of callbacks to create, search and traverse the tree.',
+18 silly publish   main: 'index.js',
+18 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+18 silly publish   repository:
+18 silly publish    { type: 'git',
+18 silly publish      url: 'git+https://github.com/cchandurkar/Data-Tree.git' },
+18 silly publish   keywords: [ 'tree', 'binary', 'tree', 'search', 'BST', 'traversal', 'travers' ],
+18 silly publish   author: { name: 'Chaitanya Chandurkar' },
+18 silly publish   license: 'MIT',
+18 silly publish   bugs: { url: 'https://github.com/cchandurkar/Data-Tree/issues' },
+18 silly publish   homepage: 'https://github.com/cchandurkar/Data-Tree#readme',
+18 silly publish   devDependencies:
+18 silly publish    { grunt: '^0.4.5',
+18 silly publish      'grunt-browserify': '^4.0.1',
+18 silly publish      'grunt-contrib-jshint': '^0.11.3',
+18 silly publish      'grunt-contrib-uglify': '^0.10.1',
+18 silly publish      'grunt-contrib-watch': '^0.6.1',
+18 silly publish      'grunt-jsdoc': '^1.0.0',
+18 silly publish      'grunt-jsdoc-to-markdown': '^1.1.1',
+18 silly publish      'ink-docstrap': '^0.5.2',
+18 silly publish      minami: '^1.1.1' },
+18 silly publish   readme: '# Data Tree\nData oriented tree structure that unleashes the power of callbacks to create, search and traverse tree.\n\n## Install:\n`$ npm install data-tree`<br /><br />\nThen use via `require(\'data-tree\')` **OR** use browserified builds from `dist/dataTree.js` **OR** `dist/dataTree.min.js` in `<script />` tag.\n\n## Examples:\nFollowing examples will guide you about how to create tree, insert/remove nodes and search/traverse a tree. Don\'t forget to checkout  [Data-Tree reference](http://cchandurkar.github.io/data-tree/dataTree.js).\n\n### Create tree\n`dataTree` is global variable that can be used to create a tree in following way.\n```javascript\n  var tree = dataTree.create();\n```\n\n### Insert data\n```javascript\n// Insert single value\ntree.insert(183);\n\n// Insert array of values\ntree.insert([34, 565, 78]);\n\n// Insert complex data\ntree.insert({\n  key: \'#berries\',\n  value: { name: \'Apple\', color: \'Red\'}\n});\n```\n\n### Insert data to node that matches given criteria\n```javascript\n// Insert data\ntree.insert({\n  key: \'#apple\',\n  value: { name: \'Apple\', color: \'Red\'}\n});\n\n// New Data\nvar greenApple = {\n  key: \'#greenapple\',\n  value: { name: \'Green Apple\', color: \'Green\' }\n};\n\n// Insert data to node which has `key` = #apple\ntree.insertTo(function(data){\n  return data.key === \'#apple\'\n}, greenApple);\n```\n\n### Insert data to node using its instance\n```javascript\n// Insert data\nvar node = tree.insert({\n  key: \'#apple\',\n  value: { name: \'Apple\', color: \'Red\'}\n});\n\n// New Data\nvar greenApple = {\n key: \'#greenapple\',\n value: { name: \'Green Apple\', color: \'Green\' }\n};\n\n// Insert data to node\ntree.insertToNode(node, greenApple);\n```\n\n### Remove Node\n```javascript\n// Insert Node\nvar node = tree.insert({\n  key: \'#apple\',\n  value: { name: \'Apple\', color: \'Red\'}\n});\n\n// Remove it\ntree.remove(node);\n```\n\n### Search BFS\n```javascript\nvar node = tree.traverser().searchBFS(function(data){\n  return data.key === \'#apple\';\n});\n```\n\n### Search DFS\n```javascript\nvar node = tree.traverser().searchDFS(function(data){\n  return data.key === \'#apple\';\n});\n```\n\n### Traverse BFS\n```javascript\ntree.traverser().traverseBFS(function(node){\n  console.log(node.data);\n});\n```\n\n#### Traverse DFS\n```javascript\ntree.traverser().traverseDFS(function(node){\n  console.log(node.data);\n});\n```\n\n## Develop\n1. Clone this repositoy and `cd` into it\n3. `npm install`\n4. `grunt build` to build browserify files **OR** `grunt watch` to build automatically upon file change.\n',
+18 silly publish   readmeFilename: 'README.md',
+18 silly publish   gitHead: '26bd70afbd9e08782043f4fdb50f69ba7ead7245',
+18 silly publish   _id: 'data-tree@1.1.1',
+18 silly publish   _shasum: '6b5d602ee896fb311f4ded2a426880731cf6277a',
+18 silly publish   _from: '.' }
+19 verbose getPublishConfig undefined
+20 silly mapToRegistry name data-tree
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/data-tree
+24 verbose publish registryBase https://registry.npmjs.org/
+25 silly publish uploading /home/cchandurkar/.npm/data-tree/1.1.1/package.tgz
+26 verbose request uri https://registry.npmjs.org/data-tree
+27 verbose request sending authorization for write operation
+28 info attempt registry request try #1 at 9:52:55 PM
+29 verbose request using bearer token for auth
+30 verbose request id 8557b68b440c2b5d
+31 http request PUT https://registry.npmjs.org/data-tree
+32 http 403 https://registry.npmjs.org/data-tree
+33 verbose headers { 'content-type': 'application/json',
+33 verbose headers   'cache-control': 'max-age=60',
+33 verbose headers   'content-length': '95',
+33 verbose headers   'accept-ranges': 'bytes',
+33 verbose headers   date: 'Mon, 23 Nov 2015 02:52:58 GMT',
+33 verbose headers   via: '1.1 varnish',
+33 verbose headers   connection: 'keep-alive',
+33 verbose headers   'x-served-by': 'cache-jfk1033-JFK',
+33 verbose headers   'x-cache': 'MISS',
+33 verbose headers   'x-cache-hits': '0',
+33 verbose headers   'x-timer': 'S1448247176.384409,VS0,VE1686' }
+34 verbose request invalidating /home/cchandurkar/.npm/registry.npmjs.org/data-tree on PUT
+35 error publish Failed PUT 403
+36 verbose stack Error: "You cannot publish over the previously published version 1.1.1." : data-tree
+36 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+36 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+36 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+36 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:198:22)
+36 verbose stack     at emitTwo (events.js:87:13)
+36 verbose stack     at Request.emit (events.js:172:7)
+36 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1082:10)
+36 verbose stack     at emitOne (events.js:82:20)
+36 verbose stack     at Request.emit (events.js:169:7)
+36 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1009:12)
+37 verbose statusCode 403
+38 verbose pkgid data-tree
+39 verbose cwd /home/cchandurkar/Academics/Research/Tree-Traversal
+40 error Linux 3.16.0-53-generic
+41 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+42 error node v5.0.0
+43 error npm  v3.4.0
+44 error code E403
+45 error "You cannot publish over the previously published version 1.1.1." : data-tree
+46 error If you need help, you may report this error at:
+46 error     <https://github.com/npm/npm/issues>
+47 verbose exit [ 1, true ]

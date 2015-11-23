@@ -5,7 +5,28 @@
     <title>Console Demo</title>
     <script type="text/javascript" src="../dist/dataTree.js"></script>
     <script type="text/javascript">
-      console.log("data tree", dataTree.create());
+
+      var tree = dataTree.create();
+
+      tree.insert({
+        key: '#apple',
+        value: {color: 'RED'}
+      });
+
+      tree.insert({
+        key: '#mango',
+        value: {color: 'Yellow'}
+      });
+
+      tree.insertTo(function(data){
+        return data.key === '#apple';
+      }, {key: '#coconut', value: {color: 'Brown'}});
+
+      console.log("data tree", tree.export(function(data){
+        return {
+          name: data.key
+        };
+      }));
     </script>
   </head>
   <body>

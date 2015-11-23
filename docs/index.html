@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#getChildNodesOf">getChildNodesOf</a></li><li data-type='method'><a href="Tree.html#getParentNodeOf">getParentNodeOf</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>Data Tree</h1><p>Data oriented tree structure that enlishes the power of callbacks to create, search and traverse tree.</p>
+<h3>Install:</h3><p><code>$ npm install data-tree</code><br /><br />
+Then use via <code>require('data-tree')</code> <strong>OR</strong> use browserified builds from <code>dist/dataTree.js</code> <strong>OR</strong> <code>dist/dataTree.min.js</code> in <code>&lt;script /&gt;</code> tag. </p>
+<h3>Examples:</h3><p>Following examples will guide you about how to create tree, insert/remove nodes and search/traverse a tree. Don't forget to checkout  <a href="http://cchandurkar.github.io/data-tree/dataTree.js">Data-Tree reference</a>.</p>
+<h4>Create tree</h4><p><code>dataTree</code> is global variable that can be used to create a tree in following way.</p>
+<pre class="prettyprint source lang-javascript"><code>  var tree = dataTree.create();</code></pre><h4>Insert data</h4><pre class="prettyprint source lang-javascript"><code>// Insert single value
+tree.insert(183);
+
+// Insert array of values
+tree.insert([34, 565, 78]);
+
+// Insert complex data
+tree.insert({
+  key: '#berries',
+  value: { name: 'Apple', color: 'Red'}
+});</code></pre><h4>Insert data to node that matches given criteria</h4><pre class="prettyprint source lang-javascript"><code>// Insert data
+tree.insert({
+  key: '#apple',
+  value: { name: 'Apple', color: 'Red'}
+});
+
+// New Data
+var greenApple = {
+  key: '#greenapple',
+  value: { name: 'Green Apple', color: 'Green' }
+};
+
+// Insert data to node which has `key` = #apple
+tree.insertTo(function(data){
+  return data.key === '#apple'
+}, greenApple);</code></pre><h4>Insert data to node using its instance</h4><pre class="prettyprint source lang-javascript"><code>// Insert data
+var node = tree.insert({
+  key: '#apple',
+  value: { name: 'Apple', color: 'Red'}
+});
+
+// New Data
+var greenApple = {
+ key: '#greenapple',
+ value: { name: 'Green Apple', color: 'Green' }
+};
+
+// Insert data to node
+tree.insertToNode(node, greenApple);</code></pre><h4>Remove Node</h4><pre class="prettyprint source lang-javascript"><code>// Insert Node
+var node = tree.insert({
+  key: '#apple',
+  value: { name: 'Apple', color: 'Red'}
+});
+
+// Remove it
+tree.remove(node);</code></pre><h4>Search BFS</h4><pre class="prettyprint source lang-javascript"><code>var node = tree.traverser().searchBFS(function(data){
+  return data.key === '#apple';
+});</code></pre><h4>Search DFS</h4><pre class="prettyprint source lang-javascript"><code>var node = tree.traverser().searchDFS(function(data){
+  return data.key === '#apple';
+});</code></pre><h4>Traverse BFS</h4><pre class="prettyprint source lang-javascript"><code>tree.traverser().traverseBFS(function(node){
+  console.log(node.data);
+});</code></pre><h4>Traverse DFS</h4><pre class="prettyprint source lang-javascript"><code>tree.traverser().traverseDFS(function(node){
+  console.log(node.data);
+});</code></pre><h3>Develop</h3><ol>
+<li>Clone this repositoy and <code>cd</code> into it</li>
+<li><code>npm install</code></li>
+<li><code>grunt build</code> to build browserify files <strong>OR</strong> <code>grunt watch</code> to build automatically upon file change.</li>
+</ol></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Nov 22 2015 21:31:52 GMT-0500 (EST) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

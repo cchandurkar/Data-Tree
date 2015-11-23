@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>traverser.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#getChildNodesOf">getChildNodesOf</a></li><li data-type='method'><a href="Tree.html#getParentNodeOf">getParentNodeOf</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">traverser.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+module.exports = (function(){
+
+  // Flag bad practises
+  'use strict';
+
+  // ------------------------------------
+  // Basic Setup
+  // ------------------------------------
+
+  /**
+   * @class Traverser
+   * @constructor
+   * @classdesc Represents a traverser which searches/traverses the tree in BFS and DFS fashion.
+   * @param tree - {@link Tree} that has to be traversed or search.
+   */
+  function Traverser(tree){
+
+    if(!tree)
+    throw new Error('Could not find a tree that is to be traversed');
+
+    /**
+     * Represents the {@link Tree} which has to be traversed.
+     *
+     * @property _tree
+     * @type {object}
+     * @default "null"
+     */
+    this._tree = tree;
+
+  }
+
+  /**
+   * Searches a tree in DFS fashion. Requires a search criteria to be provided.
+   *
+   * @method searchDFS
+   * @memberof Traverser
+   * @instance
+   * @param {function} criteria - MUST BE a callback function that specifies the search criteria.
+   * Criteria callback here receives {@link TreeNode#_data} in parameter and MUST return boolean
+   * indicating whether that data satisfies your criteria.
+   * @return {object} - first {@link TreeNode} in tree that matches the given criteria.
+   * @example
+   * // Search DFS
+   * var node = tree.traverser().searchDFS(function(data){
+   *  return data.key === '#greenapple';
+   * });
+   */
+  Traverser.prototype.searchDFS = function(criteria){
+
+    // Hold the node when found
+    var foundNode = null;
+
+    // Find node recursively
+    (function recur(node){
+      if(node.matchCriteria(criteria)){
+        foundNode = node;
+        return foundNode;
+      } else {
+        node._childNodes.some(recur);
+      }
+    }(this._tree._rootNode));
+
+    return foundNode;
+  };
+
+  /**
+   * Searches a tree in BFS fashion. Requires a search criteria to be provided.
+   *
+   * @method searchBFS
+   * @memberof Traverser
+   * @instance
+   * @param {function} criteria - MUST BE a callback function that specifies the search criteria.
+   * Criteria callback here receives {@link TreeNode#_data} in parameter and MUST return boolean
+   * indicating whether that data satisfies your criteria.
+   * @return {object} - first {@link TreeNode} in tree that matches the given criteria.
+   * @example
+   * // Search BFS
+   * var node = tree.traverser().searchBFS(function(data){
+   *  return data.key === '#greenapple';
+   * });
+   */
+  Traverser.prototype.searchBFS = function(criteria){
+
+    // Hold the node when found
+    var foundNode = null;
+
+    // Find nodes recursively
+    (function recur(node){
+      if(node.matchCriteria(criteria)){
+        foundNode = node;
+        return foundNode;
+      } else {
+        node._childNodes.some(recur);
+      }
+    }(this._tree._rootNode));
+
+    return foundNode;
+
+  };
+
+  /**
+   * Traverses an entire tree in DFS fashion.
+   *
+   * @method traverseDFS
+   * @memberof Traverser
+   * @instance
+   * @param {function} callback - Gets triggered when @{link TreeNode} is explored. Explored node is passed as parameter to callback.
+   * @example
+   * // Traverse DFS
+   * tree.traverser().traverseDFS(function(node){
+   *  console.log(node.data);
+   * });
+   */
+  Traverser.prototype.traverseDFS = function(callback){
+    (function recur(node){
+      callback(node);
+      node._childNodes.forEach(recur);
+    }(this._tree._rootNode));
+  };
+
+  /**
+   * Traverses an entire tree in BFS fashion.
+   *
+   * @method traverseBFS
+   * @memberof Traverser
+   * @instance
+   * @param {function} callback - Gets triggered when node is explored. Explored node is passed as parameter to callback.
+   * @example
+   * // Traverse BFS
+   * tree.traverser().traverseBFS(function(node){
+   *  console.log(node.data);
+   * });
+   */
+  Traverser.prototype.traverseBFS = function(callback){
+    callback(this._tree._rootNode);
+    (function recur(node){
+      node._childNodes.forEach(callback);
+      node._childNodes.forEach(recur);
+    }(this._tree._rootNode));
+  };
+
+  return Traverser;
+
+}());
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Nov 22 2015 21:31:52 GMT-0500 (EST) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

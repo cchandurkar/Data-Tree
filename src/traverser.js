@@ -9,11 +9,10 @@ module.exports = (function(){
   // ------------------------------------
 
   /**
-   * Represents a traverser which traverses the tree.
-   *
-   * @class
+   * @class Traverser
    * @constructor
-   * @classdesc Represents a traverser which traverses the tree.has to be traversed.
+   * @classdesc Represents a traverser which searches/traverses the tree in BFS and DFS fashion.
+   * @param tree - {@link Tree} that has to be traversed or search.
    */
   function Traverser(tree){
 
@@ -32,28 +31,20 @@ module.exports = (function(){
   }
 
   /**
-   * Traverses an entire tree in DFS fashion.
-   *
-   * @method traverseDFS
-   * @kind function
-   * @param {function} callback - Gets triggered when @{link TreeNode} is explored. Explored node is passed as parameter to callback.
-   */
-  Traverser.prototype.traverseDFS = function(callback){
-    (function recur(node){
-      callback(node);
-      node._childNodes.forEach(recur);
-    }(this._tree._rootNode));
-  };
-
-  /**
    * Searches a tree in DFS fashion. Requires a search criteria to be provided.
    *
-   * @method searchBFS
-   * @kind function
+   * @method searchDFS
+   * @memberof Traverser
+   * @instance
    * @param {function} criteria - MUST BE a callback function that specifies the search criteria.
    * Criteria callback here receives {@link TreeNode#_data} in parameter and MUST return boolean
    * indicating whether that data satisfies your criteria.
    * @return {object} - first {@link TreeNode} in tree that matches the given criteria.
+   * @example
+   * // Search DFS
+   * var node = tree.traverser().searchDFS(function(data){
+   *  return data.key === '#greenapple';
+   * });
    */
   Traverser.prototype.searchDFS = function(criteria){
 
@@ -74,29 +65,20 @@ module.exports = (function(){
   };
 
   /**
-   * Traverses an entire tree in BFS fashion.
-   *
-   * @method traverseBFS
-   * @kind function
-   * @param {function} callback - Gets triggered when node is explored. Explored node is passed as parameter to callback.
-   */
-  Traverser.prototype.traverseBFS = function(callback){
-    callback(this._tree._rootNode);
-    (function recur(node){
-      node._childNodes.forEach(callback);
-      node._childNodes.forEach(recur);
-    }(this._tree._rootNode));
-  };
-
-  /**
    * Searches a tree in BFS fashion. Requires a search criteria to be provided.
    *
    * @method searchBFS
-   * @kind function
+   * @memberof Traverser
+   * @instance
    * @param {function} criteria - MUST BE a callback function that specifies the search criteria.
    * Criteria callback here receives {@link TreeNode#_data} in parameter and MUST return boolean
    * indicating whether that data satisfies your criteria.
    * @return {object} - first {@link TreeNode} in tree that matches the given criteria.
+   * @example
+   * // Search BFS
+   * var node = tree.traverser().searchBFS(function(data){
+   *  return data.key === '#greenapple';
+   * });
    */
   Traverser.prototype.searchBFS = function(criteria){
 
@@ -115,6 +97,47 @@ module.exports = (function(){
 
     return foundNode;
 
+  };
+
+  /**
+   * Traverses an entire tree in DFS fashion.
+   *
+   * @method traverseDFS
+   * @memberof Traverser
+   * @instance
+   * @param {function} callback - Gets triggered when @{link TreeNode} is explored. Explored node is passed as parameter to callback.
+   * @example
+   * // Traverse DFS
+   * tree.traverser().traverseDFS(function(node){
+   *  console.log(node.data);
+   * });
+   */
+  Traverser.prototype.traverseDFS = function(callback){
+    (function recur(node){
+      callback(node);
+      node._childNodes.forEach(recur);
+    }(this._tree._rootNode));
+  };
+
+  /**
+   * Traverses an entire tree in BFS fashion.
+   *
+   * @method traverseBFS
+   * @memberof Traverser
+   * @instance
+   * @param {function} callback - Gets triggered when node is explored. Explored node is passed as parameter to callback.
+   * @example
+   * // Traverse BFS
+   * tree.traverser().traverseBFS(function(node){
+   *  console.log(node.data);
+   * });
+   */
+  Traverser.prototype.traverseBFS = function(callback){
+    callback(this._tree._rootNode);
+    (function recur(node){
+      node._childNodes.forEach(callback);
+      node._childNodes.forEach(recur);
+    }(this._tree._rootNode));
   };
 
   return Traverser;

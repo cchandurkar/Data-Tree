@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>tree.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#getChildNodesOf">getChildNodesOf</a></li><li data-type='method'><a href="Tree.html#getParentNodeOf">getParentNodeOf</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">tree.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var TreeNode = require('./tree-node');
+var Traverser = require('./traverser');
+module.exports = (function(){
+
+  // Flag bad practises
+  'use strict';
+
+  // ------------------------------------
+  // Basic Setup
+  // ------------------------------------
+
+  /**
+   * @class Tree
+   * @classdesc Represents the tree in which data nodes can be inserted
+   * @constructor
+   */
+   function Tree(){
+
+    /**
+     * Represents the root node of the tree.
+     *
+     * @member
+     * @type {object}
+     * @default "null"
+     */
+    this._rootNode = null;
+
+    /**
+     * Represents the current node in question. `_currentNode` points to most recent
+     * node inserted or parent node of most recent node removed.
+     *
+     * @member
+    * @memberof Tree.
+     * @type {object}
+     * @default "null"
+     */
+    this._currentNode = null;
+
+    /**
+     * Represents the traverser which search/traverse a tree in DFS and BFS fashion.
+     *
+     * @member
+     * @memberof Tree
+     * @type {object}
+     * @instance
+     * @default {@link Traverser}
+     */
+    this._traverser = new Traverser(this);
+
+  }
+
+  /**
+   * Creates a {@link TreeNode} that contains the data provided and insert it in a tree.
+   * New node gets inserted to the `_currentNode` which updates itself upon every insertion and deletion.
+   *
+   * @method insert
+   * @memberof Tree
+   * @instance
+   * @param {object} data - data that has to be stored in tree-node.
+   * @return {object} - instance of {@link TreeNode} that represents node inserted.
+   * @example
+   *
+   * // Insert single value
+   * tree.insert(183);
+   *
+   * // Insert array of values
+   * tree.insert([34, 565, 78]);
+   *
+  * // Insert complex data
+   * tree.insert({
+   *   key: '#berries',
+   *   value: { name: 'Apple', color: 'Red'}
+   * });
+   */
+  Tree.prototype.insert = function(data){
+    var node = new TreeNode(data);
+    if(this._rootNode === null &amp;&amp; this._currentNode === null){
+      this._rootNode = this._currentNode = node;
+    } else {
+      node._parentNode = this._currentNode;
+      this._currentNode._childNodes.push(node);
+      this._currentNode = node;
+    }
+    return node;
+  };
+
+  /**
+   * Removes a node from tree and updates `_currentNode` to parent node of node removed.
+   *
+   * @method remove
+   * @memberof Tree
+   * @instance
+   * @param {object} node - {@link TreeNode} that has to be removed.
+   * @param {boolean} trim - indicates whether to remove entire branch from the specified node.
+   */
+  Tree.prototype.remove = function(node, trim){
+
+    // Hold `this`
+    var thiss = this;
+
+    // if removeChildren ; remove all children recursively
+    if(trim){
+      node._childNodes.forEach(function(_child){
+        thiss.remove(_child, removeChildren);
+      });
+    } else {
+
+      // Check If node has parent node
+      if(node._parentNode){
+
+        // Take all child nodes and put in parent's _childNodes
+        node._childNodes.forEach(function(_child){
+          _child._parentNode = node._parentNode;
+          node._parentNode._childNodes.push(_child);
+        });
+
+        // Remove node from parent's _childNodes
+        var index = node._parentNode._childNodes.indexOf(node);
+        node._parentNode._childNodes.splice(index, 1);
+
+      } else {
+
+        // Remove a rootNode
+        this._rootNode = null;
+        this._currentNode = null;
+
+      }
+
+      // Empty nodes `_childNodes`
+      node._childNodes = [];
+
+    }
+
+    // Set parent and data to null
+    node._parentNode = null;
+    node._data = null;
+
+  };
+
+  /**
+   * Getter function that returns {@link Traverser}.
+   *
+   * @method traverser
+   * @memberof Tree
+   * @instance
+   * @return {@link Traverser} for the tree.
+   */
+  Tree.prototype.traverser = function(){
+    return this._traverser;
+  };
+
+  /**
+   * Inserts node to a particular node present in the tree. Particular node here is searched
+   * in the tree based on the criteria provided.
+   *
+   * @method insertTo
+   * @memberof Tree
+   * @instance
+   * @param {function} criteria - Callback function that specifies the search criteria
+   * for node to which new node is to be inserted. Criteria callback here receives {@link TreeNode#_data}
+   * in parameter and MUST return boolean indicating whether that data satisfies your criteria.
+   * @param {object} data - that has to be stored in tree-node.
+   * @return {object} - instance of {@link TreeNode} that represents node inserted.
+   * @example
+   *
+   * // Insert data
+   * tree.insert({
+   *   key: '#apple',
+   *   value: { name: 'Apple', color: 'Red'}
+   * });
+   *
+   * // New Data
+   * var greenApple = {
+   *  key: '#greenapple',
+   *  value: { name: 'Green Apple', color: 'Green' }
+   * };
+   *
+   * // Insert data to node which has `key` = #apple
+   * tree.insertTo(function(data){
+   *  return data.key === '#apple'
+   * }, greenApple);
+   */
+  Tree.prototype.insertTo = function(criteria, data){
+    var node = this.searchDFS(criteria);
+    return this.insertToNode(node, data);
+  };
+
+  /**
+   * Inserts node to a particular node present in the tree. Particular node here is an instance of {@link TreeNode}
+   *
+   * @method insertToNode
+   * @memberof Tree
+   * @instance
+   * @param {function} node -  {@link TreeNode} to which data node is to be inserted.
+   * @param {object} data - that has to be stored in tree-node.
+   * @return {object} - instance of {@link TreeNode} that represents node inserted.
+   * @example
+   *
+   * // Insert data
+   * var node = tree.insert({
+   *   key: '#apple',
+   *   value: { name: 'Apple', color: 'Red'}
+   * });
+   *
+   * // New Data
+   * var greenApple = {
+   *  key: '#greenapple',
+   *  value: { name: 'Green Apple', color: 'Green' }
+   * };
+   *
+   * // Insert data to node
+   * tree.insertToNode(node, greenApple);
+   */
+  Tree.prototype.insertToNode = function(node, data){
+    var newNode = new TreeNode(data);
+    newNode._parentNode = node;
+    node._childNodes.push(newNode);
+    this._currentNode = newNode;
+    return newNode;
+  };
+
+  /**
+   * Get all child nodes of {@link TreeNode} specified.
+   *
+   * @method getChildNodesOf
+   * @memberof Tree
+   * @instance
+   * @param {object} - {@link TreeNode} of which child nodes are to be accessed.
+   * @return {array} - array of {@link TreeNode}s.
+   */
+  Tree.prototype.getChildNodesOf = function(node){
+    return node._childNodes;
+  };
+
+  /**
+   * Get parent node of {@link TreeNode} specified.
+   *
+   * @method getParentNodeOf
+   * @memberof Tree
+   * @instance
+   * @param {object} - {@link TreeNode} of which parent node is to be accessed.
+   * @return {object} - {@link TreeNode}.
+   */
+  Tree.prototype.getParentNodeOf = function(node){
+    return node._parentNode;
+  };
+
+  /**
+   * Exports the tree data in format specified. It maintains herirachy by adding
+   * additional "children" property to returned value of `criteria` callback.
+   *
+   * @method export
+   * @memberof Tree
+   * @instance
+   * @param {Tree~criteria} criteria - Callback function that receives data in parameter
+   * and MUST return a formatted data that has to be exported. A new property "children" is added to object returned
+   * that maintains the heirarchy of nodes.
+   * @return {object} - {@link TreeNode}.
+   * @example
+   *
+   * var rootNode = tree.insert({
+   *   key: '#apple',
+   *   value: { name: 'Apple', color: 'Red'}
+   * });
+   *
+   * tree.insert({
+   *   key: '#greenapple',
+   *   value: { name: 'Green Apple', color: 'Green'}
+   * });
+   *
+   * tree.insertToNode(rootNode,  {
+   *  key: '#someanotherapple',
+   *  value: { name: 'Some Apple', color: 'Some Color' }
+   * });
+   *
+   * // Export the tree
+   * var exported = tree.export(function(data){
+   *  return { name: data.value.name };
+   * });
+   *
+   * // Result in `exported`
+   * {
+   * "name": "Apple",
+   * "children": [
+   *   {
+   *     "name": "Green Apple",
+   *     "children": []
+   *   },
+   *   {
+   *     "name": "Some Apple",
+   *     "children": []
+   *  }
+   * ]
+   *}
+   *
+   */
+  Tree.prototype.export = function(criteria){
+
+    // Check if criteria is specified
+    if(!criteria || typeof criteria !== 'function')
+    throw new Error('Export criteria not specified');
+
+    // Export every node recursively
+    var exportRecur = function(node){
+      var exported = node.matchCriteria(criteria);
+      if(!exported || typeof exported !== 'object'){
+        throw new Error('Export criteria should always return an object and it cannot be null.');
+      } else {
+        exported.children = [];
+        node._childNodes.forEach(function(_child){
+          exported.children.push(exportRecur(_child));
+        });
+        return exported;
+      }
+    };
+
+    return exportRecur(this._rootNode);
+  };
+
+  /**
+   * Callback that receives a node data in parameter and expects user to return one of following:
+   * 1. {@link Traverser#searchBFS} - {boolean} in return indicating whether given node satisfies criteria.
+   * 2. {@link Traverser#searchDFS} - {boolean} in return indicating whether given node satisfies criteria.
+   * 3. {@link Tree#export} - {object} in return indicating formatted data object.
+   * @callback criteria
+   * @param data {object} - data of particular {@link TreeNode}
+   */
+
+
+
+  return Tree;
+
+}());
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Nov 22 2015 21:31:52 GMT-0500 (EST) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

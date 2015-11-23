@@ -42,14 +42,21 @@ module.exports = function(grunt) {
 
       // JSDoc to Github markdown
       jsdoc2md: {
-        separateOutputFilePerInput: {
-          files: [
-            { src: "src/tree.js", dest: "docs/Tree.md" },
-            { src: "src/tree-node.js", dest: "docs/TreeNode.md" },
-            { src: "src/traverser.js", dest: "docs/Traverser.md" },
-          ]
+        oneOutputFile: {
+            src: "src/*.js",
+            dest: "docs/README.md"
         },
+      },
+
+      jsdoc : {
+        dist : {
+          src: ['src/**/*.js', 'README.md'],
+          options: {
+              destination : 'docs',
+              template : "node_modules/minami",
+          }
       }
+    }
 
     });
 
@@ -58,10 +65,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
-    grunt.loadNpmTasks('grunt-jsdoc-to-markdown');
+  grunt.loadNpmTasks('grunt-jsdoc-to-markdown');
+  grunt.loadNpmTasks('grunt-jsdoc');
 
   // Default task(s).
-  grunt.registerTask('build', ['jshint', 'browserify', 'uglify:min', 'jsdoc2md']);
+  grunt.registerTask('build', ['jshint', 'browserify', 'uglify:min', 'jsdoc2md', 'jsdoc']);
   grunt.registerTask('default', ['build']);
 
 };

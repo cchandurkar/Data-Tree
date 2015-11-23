@@ -9,9 +9,7 @@ module.exports = (function(){
   // ------------------------------------
 
   /**
-   * Represents a node in the tree.
-   *
-   * @class
+   * @class TreeNode
    * @classdesc Represents a node in the tree.
    * @constructor
    * @param {object} data - that is to be stored in a node
@@ -44,14 +42,15 @@ module.exports = (function(){
      * @default "null"
      */
     this._data = data;
-    
+
   }
 
   /**
    * Indicates whether this node matches the specified criteria. It triggers a callback criteria function that returns something.
    *
-   * @method traverseDFS
-   * @kind function
+   * @method matchCriteria
+   * @memberof TreeNode
+   * @instance
    * @memberof TreeNode
    * @param {function} callback - Callback function that specifies some criteria. It receives {@link TreeNode#_data} in parameter and expects different values in different scenarios.
    * `matchCriteria` is used by following functions and expects:

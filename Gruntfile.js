@@ -15,7 +15,7 @@ module.exports = function(grunt) {
       browserify: {
         dist: {
           files: {
-            './dist/dataTree.js': ['./src/index.js'],
+            './dist/dataTree.js': ['./index.js'],
           },
         }
       },
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
       // Watch srcFiles for change
       watch: {
         scripts: {
-          files: ['./src/**/*.js'],
+          files: ['./src/**/*.js', './index.js', './README.md'],
           tasks: ['build'],
           options: {
             spawn: false,

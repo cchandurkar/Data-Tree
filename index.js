@@ -1,6 +1,8 @@
-
+var Tree = require('./src/tree');
 module.exports = dataTree = (function(){
   return {
-    create: require('./src/')
+    create: function(){
+      return new Tree();
+    }
   };
 }());

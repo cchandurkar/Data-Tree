@@ -1,20 +1,20 @@
 # Data Tree
-Data oriented tree structure that enlishes the power of callbacks to create, search and traverse tree.
+Data oriented tree structure that unleashes the power of callbacks to create, search and traverse tree.
 
-### Install:
+## Install:
 `$ npm install data-tree`<br /><br />
-Then use via `require('data-tree')` **OR** use browserified builds from `dist/dataTree.js` **OR** `dist/dataTree.min.js` in `<script />` tag. 
+Then use via `require('data-tree')` **OR** use browserified builds from `dist/dataTree.js` **OR** `dist/dataTree.min.js` in `<script />` tag.
 
-### Examples:
+## Examples:
 Following examples will guide you about how to create tree, insert/remove nodes and search/traverse a tree. Don't forget to checkout  [Data-Tree reference](http://cchandurkar.github.io/data-tree/dataTree.js).
 
-#### Create tree
+### Create tree
 `dataTree` is global variable that can be used to create a tree in following way.
 ```javascript
   var tree = dataTree.create();
 ```
 
-#### Insert data
+### Insert data
 ```javascript
 // Insert single value
 tree.insert(183);
@@ -29,7 +29,7 @@ tree.insert({
 });
 ```
 
-#### Insert data to node that matches given criteria
+### Insert data to node that matches given criteria
 ```javascript
 // Insert data
 tree.insert({
@@ -49,7 +49,7 @@ tree.insertTo(function(data){
 }, greenApple);
 ```
 
-#### Insert data to node using its instance
+### Insert data to node using its instance
 ```javascript
 // Insert data
 var node = tree.insert({
@@ -67,7 +67,7 @@ var greenApple = {
 tree.insertToNode(node, greenApple);
 ```
 
-#### Remove Node
+### Remove Node
 ```javascript
 // Insert Node
 var node = tree.insert({
@@ -79,21 +79,21 @@ var node = tree.insert({
 tree.remove(node);
 ```
 
-#### Search BFS
+### Search BFS
 ```javascript
 var node = tree.traverser().searchBFS(function(data){
   return data.key === '#apple';
 });
 ```
 
-#### Search DFS
+### Search DFS
 ```javascript
 var node = tree.traverser().searchDFS(function(data){
   return data.key === '#apple';
 });
 ```
 
-#### Traverse BFS
+### Traverse BFS
 ```javascript
 tree.traverser().traverseBFS(function(node){
   console.log(node.data);
@@ -107,7 +107,7 @@ tree.traverser().traverseDFS(function(node){
 });
 ```
 
-### Develop
+## Develop
 1. Clone this repositoy and `cd` into it
 3. `npm install`
 4. `grunt build` to build browserify files **OR** `grunt watch` to build automatically upon file change.

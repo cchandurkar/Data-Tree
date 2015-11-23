@@ -300,6 +300,11 @@ module.exports = (function(){
     if(!criteria || typeof criteria !== 'function')
     throw new Error('Export criteria not specified');
 
+    // Check if rootNode is not null
+    if(!this._rootNode){
+      return null;
+    }
+
     // Export every node recursively
     var exportRecur = function(node){
       var exported = node.matchCriteria(criteria);

@@ -145,6 +145,8 @@ Represents the tree in which data nodes can be inserted
 **Kind**: global class  
 
 * [Tree](#Tree)
+  * [.isEmpty()](#Tree+isEmpty) ⇒ <code>boolean</code>
+  * [.pruneAllNodes()](#Tree+pruneAllNodes) ⇒
   * [.insert(data)](#Tree+insert) ⇒ <code>object</code>
   * [.remove(node, trim)](#Tree+remove)
   * [.trimBranchFrom(node)](#Tree+trimBranchFrom)
@@ -156,6 +158,18 @@ Represents the tree in which data nodes can be inserted
   * [.export(criteria)](#Tree+export) ⇒ <code>object</code>
   * [.import(data, childProperty, criteria)](#Tree+import) ⇒ <code>object</code>
 
+<a name="Tree+isEmpty"></a>
+### tree.isEmpty() ⇒ <code>boolean</code>
+Checks whether tree is empty.
+
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>boolean</code> - whether tree is empty.  
+<a name="Tree+pruneAllNodes"></a>
+### tree.pruneAllNodes() ⇒
+Empties the tree. Removes all nodes from tree.
+
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: [Tree](#Tree) empty tree.  
 <a name="Tree+insert"></a>
 ### tree.insert(data) ⇒ <code>object</code>
 Creates a [TreeNode](#TreeNode) that contains the data provided and insert it in a tree.
@@ -383,7 +397,7 @@ var data = {
 };
 
  // Import
- // This will result in a tree having nodes containing `id` and `thumbnail` as data 
+ // This will result in a tree having nodes containing `id` and `thumbnail` as data
  tree.import(data, 'children', function(nodeData){
    return {
      id: nodeData.snapshotId,

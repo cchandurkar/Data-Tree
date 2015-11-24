@@ -8,48 +8,6 @@ module.exports = dataTree = (function(){
   };
 }());
 
-var tree = dataTree.create();
-
-
-var data = {
-  "trailId": "h2e67d4ea-f85f40e2ae4a06f4777864de",
-  "initiatedAt": 1448393492488,
-  "snapshots": {
-     "snapshotId": "b3d132131-213c20f156339ea7bdcb6273",
-     "capturedAt": 1448393495353,
-     "thumbnail": "data:img",
-     "children": [
-      {
-       "snapshotId": "yeb7ab27c-b36ff1b04aefafa9661243de",
-       "capturedAt": 1448393499685,
-       "thumbnail": "data:image/",
-       "children": [
-         {
-           "snapshotId": "a00c9828f-e2be0fc4732f56471e77947a",
-           "capturedAt": 1448393503061,
-           "thumbnail": "data:image/png;base64",
-           "children": []
-         }
-       ]
-     }
-    ]
-  }
-};
-
-// Import
-tree.import(data, 'children', function(nodeData){
- return {
-   id: nodeData.snapshotId,
-   thumbnail: nodeData.thumbnail
-  }
-});
-
-console.log(tree.export(function(data){
-  return {
-    id: data.snapshotId
-  }
-}));
-
 },{"./src/tree":4}],2:[function(require,module,exports){
 
 module.exports = (function(){
@@ -317,6 +275,31 @@ module.exports = (function(){
     this._traverser = new Traverser(this);
 
   }
+
+  /**
+   * Checks whether tree is empty.
+   *
+   * @method isEmpty
+   * @memberof Tree
+   * @instance
+   * @return {boolean} whether tree is empty.
+   */
+  Tree.prototype.isEmpty = function(){
+    return this._rootNode === null && this._currentNode === null;
+  };
+
+  /**
+   * Empties the tree. Removes all nodes from tree.
+   *
+   * @method pruneAllNodes
+   * @memberof Tree
+   * @instance
+   * @return {@link Tree} empty tree.
+   */
+  Tree.prototype.pruneAllNodes = function(){
+    if(this._rootNode && this._currentNode) this.trimBranchFrom(this._rootNode);
+    return this;
+  };
 
   /**
    * Creates a {@link TreeNode} that contains the data provided and insert it in a tree.
@@ -646,7 +629,7 @@ module.exports = (function(){
    * };
    *
    *  // Import
-   *  // This will result in a tree having nodes containing `id` and `thumbnail` as data 
+   *  // This will result in a tree having nodes containing `id` and `thumbnail` as data
    *  tree.import(data, 'children', function(nodeData){
    *    return {
    *      id: nodeData.snapshotId,

@@ -50,6 +50,31 @@ module.exports = (function(){
   }
 
   /**
+   * Checks whether tree is empty.
+   *
+   * @method isEmpty
+   * @memberof Tree
+   * @instance
+   * @return {boolean} whether tree is empty.
+   */
+  Tree.prototype.isEmpty = function(){
+    return this._rootNode === null && this._currentNode === null;
+  };
+
+  /**
+   * Empties the tree. Removes all nodes from tree.
+   *
+   * @method pruneAllNodes
+   * @memberof Tree
+   * @instance
+   * @return {@link Tree} empty tree.
+   */
+  Tree.prototype.pruneAllNodes = function(){
+    if(this._rootNode && this._currentNode) this.trimBranchFrom(this._rootNode);
+    return this;
+  };
+
+  /**
    * Creates a {@link TreeNode} that contains the data provided and insert it in a tree.
    * New node gets inserted to the `_currentNode` which updates itself upon every insertion and deletion.
    *
@@ -377,7 +402,7 @@ module.exports = (function(){
    * };
    *
    *  // Import
-   *  // This will result in a tree having nodes containing `id` and `thumbnail` as data 
+   *  // This will result in a tree having nodes containing `id` and `thumbnail` as data
    *  tree.import(data, 'children', function(nodeData){
    *    return {
    *      id: nodeData.snapshotId,

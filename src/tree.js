@@ -439,6 +439,9 @@ module.exports = (function(){
 
     }(this._rootNode, data));
 
+    // Set Current Node to root node
+    this._currentNode = this._rootNode;
+
     return this;
 
   };

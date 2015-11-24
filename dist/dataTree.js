@@ -643,6 +643,9 @@ module.exports = (function(){
     // Empty all tree
     if(this._rootNode) this.trimBranchFrom(this._rootNode);
 
+    // Set Current Node to root node as null
+    this._currentNode = this._rootNode = null;
+
     // Hold `this`
     var thiss = this;
 

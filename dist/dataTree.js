@@ -563,6 +563,36 @@ module.exports = (function(){
     return exportRecur(this._rootNode);
   };
 
+  Tree.prototype.import = function(data, childProperty, criteria){
+
+    // Empty all tree
+    if(this._rootNode) this.trimBranchFrom(this._rootNode);
+
+    // Hold `this`
+    var thiss = this;
+
+    // Import recursively
+    (function importRecur(node, recurData){
+
+      // Format data from given criteria
+      var _data = criteria(recurData);
+
+      // Create Root Node
+      if(!node){
+        node = thiss.insert(_data);
+      } else {
+        node = thiss.insertToNode(node, _data);
+      }
+
+      // For Every Child
+      recurData[childProperty].forEach(function(_child){
+        importRecur(node, _child);
+      });
+
+    }(this._rootNode, data));
+  };
+
+
   /**
    * Callback that receives a node data in parameter and expects user to return one of following:
    * 1. {@link Traverser#searchBFS} - {boolean} in return indicating whether given node satisfies criteria.

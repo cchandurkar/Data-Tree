@@ -147,6 +147,7 @@ Represents the tree in which data nodes can be inserted
 * [Tree](#Tree)
   * [.insert(data)](#Tree+insert) ⇒ <code>object</code>
   * [.remove(node, trim)](#Tree+remove)
+  * [.trimBranchFrom(node)](#Tree+trimBranchFrom)
   * [.traverser()](#Tree+traverser) ⇒
   * [.insertTo(criteria, data)](#Tree+insertTo) ⇒ <code>object</code>
   * [.insertToNode(node, data)](#Tree+insertToNode) ⇒ <code>object</code>
@@ -190,6 +191,16 @@ Removes a node from tree and updates `_currentNode` to parent node of node remov
 | --- | --- | --- |
 | node | <code>object</code> | [TreeNode](#TreeNode) that has to be removed. |
 | trim | <code>boolean</code> | indicates whether to remove entire branch from the specified node. |
+
+<a name="Tree+trimBranchFrom"></a>
+### tree.trimBranchFrom(node)
+Remove an entire branch starting with specified node.
+
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| node | <code>object</code> | [TreeNode](#TreeNode) from which entire branch has to be removed. |
 
 <a name="Tree+traverser"></a>
 ### tree.traverser() ⇒

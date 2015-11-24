@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#getChildNodesOf">getChildNodesOf</a></li><li data-type='method'><a href="Tree.html#getParentNodeOf">getParentNodeOf</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#getChildNodesOf">getChildNodesOf</a></li><li data-type='method'><a href="Tree.html#getParentNodeOf">getParentNodeOf</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li><li data-type='method'><a href="Tree.html#trimBranchFrom">trimBranchFrom</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <div id="main">
@@ -257,7 +257,7 @@ that maintains the heirarchy of nodes.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line248">line 248</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line261">line 261</a>
     </li></ul></dd>
     
 
@@ -444,7 +444,7 @@ var exported = tree.export(function(data){
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line222">line 222</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line235">line 235</a>
     </li></ul></dd>
     
 
@@ -593,7 +593,7 @@ var exported = tree.export(function(data){
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line235">line 235</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line248">line 248</a>
     </li></ul></dd>
     
 
@@ -941,7 +941,7 @@ in parameter and MUST return boolean indicating whether that data satisfies your
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line152">line 152</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line165">line 165</a>
     </li></ul></dd>
     
 
@@ -1137,7 +1137,7 @@ tree.insertTo(function(data){
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line188">line 188</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line201">line 201</a>
     </li></ul></dd>
     
 
@@ -1413,7 +1413,7 @@ tree.insertToNode(node, greenApple);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line140">line 140</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line153">line 153</a>
     </li></ul></dd>
     
 
@@ -1450,6 +1450,137 @@ tree.insertToNode(node, greenApple);</code></pre>
 
 
         
+            
+
+    
+
+    <h4 class="name" id="trimBranchFrom"><span class="type-signature"></span>trimBranchFrom<span class="signature">(node)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Remove an entire branch starting with specified node.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>node</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><a href="TreeNode.html">TreeNode</a> from which entire branch has to be removed.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line124">line 124</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     
@@ -1467,7 +1598,7 @@ tree.insertToNode(node, greenApple);</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Nov 23 2015 16:27:59 GMT-0500 (EST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Nov 23 2015 19:57:58 GMT-0500 (EST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

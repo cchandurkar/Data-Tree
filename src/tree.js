@@ -148,7 +148,7 @@ module.exports = (function(){
     } else {
       thiss._rootNode = thiss._currentNode = null;
     }
-  }
+  };
 
   /**
    * Getter function that returns {@link Traverser}.
@@ -335,10 +335,6 @@ module.exports = (function(){
 
     return exportRecur(this._rootNode);
   };
-
-  Tree.prototype.import = function(dataObject, childProperty, criteria){
-    this.remove(this._rootNode, true);
-  }
 
   /**
    * Callback that receives a node data in parameter and expects user to return one of following:

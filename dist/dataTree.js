@@ -321,47 +321,60 @@ module.exports = (function(){
    * @param {boolean} trim - indicates whether to remove entire branch from the specified node.
    */
   Tree.prototype.remove = function(node, trim){
+    if(trim || node === this._rootNode){
+
+      // Trim Entire branch
+      this.trimBranchFrom(node);
+
+    } else {
+
+      // Upate children's parent to grandparent
+      node._childNodes.forEach(function(_child){
+        _child._parentNode = node._parentNode;
+        node._parentNode._childNodes.push(_child);
+      });
+
+      // Delete itslef from parent child array
+      node._parentNode._childNodes.splice(node._parentNode._childNodes.indexOf(node), 1);
+
+      // Update Current Node
+      this._currentNode = node._parentNode;
+
+      // Clear Child Array
+      node._childNodes = [];
+      node._parentNode = null;
+      node._data = null;
+
+    }
+  };
+
+  /**
+   * Remove an entire branch starting with specified node.
+   *
+   * @method trimBranchFrom
+   * @memberof Tree
+   * @instance
+   * @param {object} node - {@link TreeNode} from which entire branch has to be removed.
+   */
+  Tree.prototype.trimBranchFrom = function(node){
 
     // Hold `this`
     var thiss = this;
 
-    // if removeChildren ; remove all children recursively
-    if(trim){
-      node._childNodes.forEach(function(_child){
-        thiss.remove(_child, removeChildren);
-      });
-    } else {
-
-      // Check If node has parent node
-      if(node._parentNode){
-
-        // Take all child nodes and put in parent's _childNodes
-        node._childNodes.forEach(function(_child){
-          _child._parentNode = node._parentNode;
-          node._parentNode._childNodes.push(_child);
-        });
-
-        // Remove node from parent's _childNodes
-        var index = node._parentNode._childNodes.indexOf(node);
-        node._parentNode._childNodes.splice(index, 1);
-
-      } else {
-
-        // Remove a rootNode
-        this._rootNode = null;
-        this._currentNode = null;
-
-      }
-
-      // Empty nodes `_childNodes`
+    // trim brach recursively
+    (function recur(node){
+      node._childNodes.forEach(recur);
       node._childNodes = [];
+      node._data = null;
+    }(node));
 
+    // Update Current Node
+    if(node._parentNode){
+      node._parentNode._childNodes.splice(node._parentNode._childNodes.indexOf(node), 1);
+      thiss._currentNode = node._parentNode;
+    } else {
+      thiss._rootNode = thiss._currentNode = null;
     }
-
-    // Set parent and data to null
-    node._parentNode = null;
-    node._data = null;
-
   };
 
   /**
@@ -542,6 +555,7 @@ module.exports = (function(){
         node._childNodes.forEach(function(_child){
           exported.children.push(exportRecur(_child));
         });
+
         return exported;
       }
     };

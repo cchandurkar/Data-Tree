@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#getChildNodesOf">getChildNodesOf</a></li><li data-type='method'><a href="Tree.html#getParentNodeOf">getParentNodeOf</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li><li data-type='method'><a href="Tree.html#trimBranchFrom">trimBranchFrom</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#getChildNodesOf">getChildNodesOf</a></li><li data-type='method'><a href="Tree.html#getParentNodeOf">getParentNodeOf</a></li><li data-type='method'><a href="Tree.html#import">import</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li><li data-type='method'><a href="Tree.html#trimBranchFrom">trimBranchFrom</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <div id="main">
@@ -638,6 +638,244 @@ var exported = tree.export(function(data){
 </dl>
 
     
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="import"><span class="type-signature"></span>import<span class="signature">(data, childProperty, criteria)</span><span class="type-signature"> &rarr; {object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Imports the JSON data into a tree using the criteria provided.
+A property indicating the nesting of object must be specified.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">JSON data that has be imported</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>childProperty</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Name of the property that holds the nested data.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>criteria</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Tree~criteria</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Callback function that receives data in parameter
+and MUST return a formatted data that has to be imported in a tree.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line340">line 340</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - <a href="Tree.html">Tree</a>.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var data = {
+  "trailId": "h2e67d4ea-f85f40e2ae4a06f4777864de",
+  "initiatedAt": 1448393492488,
+  "snapshots": {
+     "snapshotId": "b3d132131-213c20f156339ea7bdcb6273",
+     "capturedAt": 1448393495353,
+     "thumbnail": "data:img",
+     "children": [
+      {
+       "snapshotId": "yeb7ab27c-b36ff1b04aefafa9661243de",
+       "capturedAt": 1448393499685,
+       "thumbnail": "data:image/",
+       "children": [
+         {
+           "snapshotId": "a00c9828f-e2be0fc4732f56471e77947a",
+           "capturedAt": 1448393503061,
+           "thumbnail": "data:image/png;base64",
+           "children": []
+         }
+       ]
+     }
+    ]
+  }
+};
+
+ // Import
+ // This will result in a tree having nodes containing `id` and `thumbnail` as data 
+ tree.import(data, 'children', function(nodeData){
+   return {
+     id: nodeData.snapshotId,
+     thumbnail: nodeData.thumbnail
+    }
+ });</code></pre>
 
 
 
@@ -1598,7 +1836,7 @@ tree.insertToNode(node, greenApple);</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Nov 23 2015 20:17:25 GMT-0500 (EST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Nov 24 2015 15:07:28 GMT-0500 (EST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

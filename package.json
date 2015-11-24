@@ -1,6 +1,6 @@
 {
   "name": "data-tree",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Data oriented tree structure that unleashes the power of callbacks to create, search and traverse the tree.",
   "main": "index.js",
   "scripts": {
@@ -11,13 +11,22 @@
     "url": "git+https://github.com/cchandurkar/Data-Tree.git"
   },
   "keywords": [
+    "node",
+    "graph",
     "tree",
     "binary",
-    "tree",
+    "data-tree",
+    "data",
+    "binary-tree",
+    "search-tree",
+    "BFS",
+    "DFS",
+    "import tree",
+    "export tree",
     "search",
     "BST",
     "traversal",
-    "travers"
+    "traverse"
   ],
   "author": "Chaitanya Chandurkar",
   "license": "MIT",

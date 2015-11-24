@@ -154,6 +154,7 @@ Represents the tree in which data nodes can be inserted
   * [.getChildNodesOf()](#Tree+getChildNodesOf) ⇒ <code>array</code>
   * [.getParentNodeOf()](#Tree+getParentNodeOf) ⇒ <code>object</code>
   * [.export(criteria)](#Tree+export) ⇒ <code>object</code>
+  * [.import(data, childProperty, criteria)](#Tree+import) ⇒ <code>object</code>
 
 <a name="Tree+insert"></a>
 ### tree.insert(data) ⇒ <code>object</code>
@@ -339,6 +340,56 @@ var exported = tree.export(function(data){
   }
  ]
 }
+```
+<a name="Tree+import"></a>
+### tree.import(data, childProperty, criteria) ⇒ <code>object</code>
+Imports the JSON data into a tree using the criteria provided.
+A property indicating the nesting of object must be specified.
+
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>object</code> - - [Tree](#Tree).  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| data | <code>object</code> | JSON data that has be imported |
+| childProperty | <code>string</code> | Name of the property that holds the nested data. |
+| criteria | <code>Tree~criteria</code> | Callback function that receives data in parameter and MUST return a formatted data that has to be imported in a tree. |
+
+**Example**  
+```js
+var data = {
+  "trailId": "h2e67d4ea-f85f40e2ae4a06f4777864de",
+  "initiatedAt": 1448393492488,
+  "snapshots": {
+     "snapshotId": "b3d132131-213c20f156339ea7bdcb6273",
+     "capturedAt": 1448393495353,
+     "thumbnail": "data:img",
+     "children": [
+      {
+       "snapshotId": "yeb7ab27c-b36ff1b04aefafa9661243de",
+       "capturedAt": 1448393499685,
+       "thumbnail": "data:image/",
+       "children": [
+         {
+           "snapshotId": "a00c9828f-e2be0fc4732f56471e77947a",
+           "capturedAt": 1448393503061,
+           "thumbnail": "data:image/png;base64",
+           "children": []
+         }
+       ]
+     }
+    ]
+  }
+};
+
+ // Import
+ // This will result in a tree having nodes containing `id` and `thumbnail` as data 
+ tree.import(data, 'children', function(nodeData){
+   return {
+     id: nodeData.snapshotId,
+     thumbnail: nodeData.thumbnail
+    }
+ });
 ```
 <a name="criteria"></a>
 ## criteria : <code>function</code>

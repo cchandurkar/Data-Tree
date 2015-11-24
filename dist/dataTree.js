@@ -8,6 +8,48 @@ module.exports = dataTree = (function(){
   };
 }());
 
+var tree = dataTree.create();
+
+
+var data = {
+  "trailId": "h2e67d4ea-f85f40e2ae4a06f4777864de",
+  "initiatedAt": 1448393492488,
+  "snapshots": {
+     "snapshotId": "b3d132131-213c20f156339ea7bdcb6273",
+     "capturedAt": 1448393495353,
+     "thumbnail": "data:img",
+     "children": [
+      {
+       "snapshotId": "yeb7ab27c-b36ff1b04aefafa9661243de",
+       "capturedAt": 1448393499685,
+       "thumbnail": "data:image/",
+       "children": [
+         {
+           "snapshotId": "a00c9828f-e2be0fc4732f56471e77947a",
+           "capturedAt": 1448393503061,
+           "thumbnail": "data:image/png;base64",
+           "children": []
+         }
+       ]
+     }
+    ]
+  }
+};
+
+// Import
+tree.import(data, 'children', function(nodeData){
+ return {
+   id: nodeData.snapshotId,
+   thumbnail: nodeData.thumbnail
+  }
+});
+
+console.log(tree.export(function(data){
+  return {
+    id: data.snapshotId
+  }
+}));
+
 },{"./src/tree":4}],2:[function(require,module,exports){
 
 module.exports = (function(){
@@ -563,6 +605,56 @@ module.exports = (function(){
     return exportRecur(this._rootNode);
   };
 
+
+  /**
+   * Imports the JSON data into a tree using the criteria provided.
+   * A property indicating the nesting of object must be specified.
+   *
+   * @method import
+   * @memberof Tree
+   * @instance
+   * @param {object} data - JSON data that has be imported
+   * @param {string} childProperty - Name of the property that holds the nested data.
+   * @param {Tree~criteria} criteria - Callback function that receives data in parameter
+   * and MUST return a formatted data that has to be imported in a tree.
+   * @return {object} - {@link Tree}.
+   * @example
+   *
+   * var data = {
+   *   "trailId": "h2e67d4ea-f85f40e2ae4a06f4777864de",
+   *   "initiatedAt": 1448393492488,
+   *   "snapshots": {
+   *      "snapshotId": "b3d132131-213c20f156339ea7bdcb6273",
+   *      "capturedAt": 1448393495353,
+   *      "thumbnail": "data:img",
+   *      "children": [
+   *       {
+   *        "snapshotId": "yeb7ab27c-b36ff1b04aefafa9661243de",
+   *        "capturedAt": 1448393499685,
+   *        "thumbnail": "data:image/",
+   *        "children": [
+   *          {
+   *            "snapshotId": "a00c9828f-e2be0fc4732f56471e77947a",
+   *            "capturedAt": 1448393503061,
+   *            "thumbnail": "data:image/png;base64",
+   *            "children": []
+   *          }
+   *        ]
+   *      }
+   *     ]
+   *   }
+   * };
+   *
+   *  // Import
+   *  // This will result in a tree having nodes containing `id` and `thumbnail` as data 
+   *  tree.import(data, 'children', function(nodeData){
+   *    return {
+   *      id: nodeData.snapshotId,
+   *      thumbnail: nodeData.thumbnail
+   *     }
+   *  });
+   *
+   */
   Tree.prototype.import = function(data, childProperty, criteria){
 
     // Empty all tree
@@ -590,8 +682,10 @@ module.exports = (function(){
       });
 
     }(this._rootNode, data));
-  };
 
+    return this;
+
+  };
 
   /**
    * Callback that receives a node data in parameter and expects user to return one of following:
@@ -601,8 +695,6 @@ module.exports = (function(){
    * @callback criteria
    * @param data {object} - data of particular {@link TreeNode}
    */
-
-
 
   return Tree;
 

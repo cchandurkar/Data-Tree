@@ -120,6 +120,7 @@ Represents a node in the tree.
 * [TreeNode](#TreeNode)
   * [new TreeNode(data)](#new_TreeNode_new)
   * [.matchCriteria(callback)](#TreeNode+matchCriteria)
+  * [.siblings()](#TreeNode+siblings) ⇒ <code>array</code>
 
 <a name="new_TreeNode_new"></a>
 ### new TreeNode(data)
@@ -138,6 +139,12 @@ Indicates whether this node matches the specified criteria. It triggers a callba
 | --- | --- | --- |
 | callback | <code>function</code> | Callback function that specifies some criteria. It receives [TreeNode#_data](TreeNode#_data) in parameter and expects different values in different scenarios. `matchCriteria` is used by following functions and expects: 1. [Tree#searchBFS](Tree#searchBFS) - {boolean} in return indicating whether given node satisfies criteria. 2. [Tree#searchDFS](Tree#searchDFS) - {boolean} in return indicating whether given node satisfies criteria. 3. [export](#Tree+export) - {object} in return indicating formatted data object. |
 
+<a name="TreeNode+siblings"></a>
+### treeNode.siblings() ⇒ <code>array</code>
+get sibling nodes.
+
+**Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
+**Returns**: <code>array</code> - - array of instances of [TreeNode](#TreeNode)  
 <a name="Tree"></a>
 ## Tree
 Represents the tree in which data nodes can be inserted

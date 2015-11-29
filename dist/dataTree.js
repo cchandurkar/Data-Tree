@@ -209,7 +209,6 @@ module.exports = (function(){
    * @method matchCriteria
    * @memberof TreeNode
    * @instance
-   * @memberof TreeNode
    * @param {function} callback - Callback function that specifies some criteria. It receives {@link TreeNode#_data} in parameter and expects different values in different scenarios.
    * `matchCriteria` is used by following functions and expects:
    * 1. {@link Tree#searchBFS} - {boolean} in return indicating whether given node satisfies criteria.
@@ -218,6 +217,21 @@ module.exports = (function(){
    */
   TreeNode.prototype.matchCriteria = function(criteria){
     return criteria(this._data);
+  };
+
+  /**
+   * get sibling nodes.
+   *
+   * @method siblings
+   * @memberof TreeNode
+   * @instance
+   * @return {array} - array of instances of {@link TreeNode}
+   */
+  TreeNode.prototype.siblings = function(){
+    var thiss = this;
+    return !this._parentNode ? null : this._parentNode._childNodes.filter(function(_child){
+      return _child !== thiss;
+    });
   };
 
   return TreeNode;

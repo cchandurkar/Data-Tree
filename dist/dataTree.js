@@ -229,7 +229,7 @@ module.exports = (function(){
    */
   TreeNode.prototype.siblings = function(){
     var thiss = this;
-    return !this._parentNode ? null : this._parentNode._childNodes.filter(function(_child){
+    return !this._parentNode ? [] : this._parentNode._childNodes.filter(function(_child){
       return _child !== thiss;
     });
   };

@@ -43,6 +43,15 @@ module.exports = (function(){
      */
     this._data = data;
 
+    /**
+     * Depth of the node represents level in hierarchy
+     *
+     * @property _depth
+     * @type {number}
+     * @default -1
+     */
+    this._depth = -1;
+    
   }
 
   /**

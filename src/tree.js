@@ -100,11 +100,13 @@ module.exports = (function(){
   Tree.prototype.insert = function(data){
     var node = new TreeNode(data);
     if(this._rootNode === null && this._currentNode === null){
+      node._depth = 1;
       this._rootNode = this._currentNode = node;
     } else {
       node._parentNode = this._currentNode;
       this._currentNode._childNodes.push(node);
       this._currentNode = node;
+      node.depth = node._parentNode._depth + 1;
     }
     return node;
   };
@@ -252,6 +254,7 @@ module.exports = (function(){
   Tree.prototype.insertToNode = function(node, data){
     var newNode = new TreeNode(data);
     newNode._parentNode = node;
+    newNode._depth = newNode._parentNode._depth + 1;
     node._childNodes.push(newNode);
     this._currentNode = newNode;
     return newNode;

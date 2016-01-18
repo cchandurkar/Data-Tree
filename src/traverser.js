@@ -86,14 +86,19 @@ module.exports = (function(){
     var foundNode = null;
 
     // Find nodes recursively
-    (function recur(node){
-      if(node.matchCriteria(criteria)){
-        foundNode = node;
-        return foundNode;
-      } else {
-        node._childNodes.some(recur);
+    (function expand(queue){
+      while(queue.length){
+        var current = queue.splice(0, 1)[0];
+        if(current.matchCriteria(criteria)){
+          foundNode = current;
+          return;
+        }
+        current._childNodes.forEach(function(_child){
+          queue.push(_child)
+        });
       }
-    }(this._tree._rootNode));
+    }([this._tree._rootNode]));
+
 
     return foundNode;
 
@@ -133,12 +138,17 @@ module.exports = (function(){
    * });
    */
   Traverser.prototype.traverseBFS = function(callback){
-    callback(this._tree._rootNode);
-    (function recur(node){
-      node._childNodes.forEach(callback);
-      node._childNodes.forEach(recur);
-    }(this._tree._rootNode));
+    (function expand(queue){
+      while(queue.length){
+        var current = queue.splice(0, 1)[0];
+        callback(current);
+        current._childNodes.forEach(function(_child){
+          queue.push(_child)
+        });
+      }
+    }([this._tree._rootNode]));
   };
+
 
   return Traverser;
 

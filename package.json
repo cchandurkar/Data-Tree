@@ -1,10 +1,10 @@
 {
   "name": "data-tree",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "description": "Data oriented tree structure that unleashes the power of callbacks to create, search and traverse the tree.",
   "main": "index.js",
   "homepage": "http://cchandurkar.github.io/data-tree/",
-  "icon": "http://cchandurkar.github.io/data-tree/icon/icon.png",
+  "icon": "logo/logo.png",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

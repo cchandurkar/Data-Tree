@@ -119,6 +119,10 @@ Represents a node in the tree.
 
 * [TreeNode](#TreeNode)
   * [new TreeNode(data)](#new_TreeNode_new)
+  * [.parentNode()](#TreeNode+parentNode) ⇒ <code>[TreeNode](#TreeNode)</code>
+  * [.childNodes()](#TreeNode+childNodes) ⇒ <code>array</code>
+  * [.data()](#TreeNode+data) ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
+  * [.depth()](#TreeNode+depth) ⇒ <code>number</code>
   * [.matchCriteria(callback)](#TreeNode+matchCriteria)
   * [.siblings()](#TreeNode+siblings) ⇒ <code>array</code>
 
@@ -129,6 +133,30 @@ Represents a node in the tree.
 | --- | --- | --- |
 | data | <code>object</code> | that is to be stored in a node |
 
+<a name="TreeNode+parentNode"></a>
+### treeNode.parentNode() ⇒ <code>[TreeNode](#TreeNode)</code>
+Returns a parent node of current node
+
+**Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
+**Returns**: <code>[TreeNode](#TreeNode)</code> - - parent of current node  
+<a name="TreeNode+childNodes"></a>
+### treeNode.childNodes() ⇒ <code>array</code>
+Returns an array of child nodes
+
+**Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
+**Returns**: <code>array</code> - - array of child nodes  
+<a name="TreeNode+data"></a>
+### treeNode.data() ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
+Returns the data belonging to this node. Data is what user sets using `insert` and `insertTo` methods.
+
+**Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
+**Returns**: <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code> - - data belonging to this node  
+<a name="TreeNode+depth"></a>
+### treeNode.depth() ⇒ <code>number</code>
+Depth of the node. Indicates the level at which node lies in a tree.
+
+**Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
+**Returns**: <code>number</code> - - depth of node  
 <a name="TreeNode+matchCriteria"></a>
 ### treeNode.matchCriteria(callback)
 Indicates whether this node matches the specified criteria. It triggers a callback criteria function that returns something.
@@ -152,19 +180,37 @@ Represents the tree in which data nodes can be inserted
 **Kind**: global class  
 
 * [Tree](#Tree)
+  * [.rootNode()](#Tree+rootNode) ⇒ <code>[TreeNode](#TreeNode)</code>
+  * [.currentNode()](#Tree+currentNode) ⇒ <code>[TreeNode](#TreeNode)</code>
+  * [.traverser()](#Tree+traverser) ⇒
   * [.isEmpty()](#Tree+isEmpty) ⇒ <code>boolean</code>
   * [.pruneAllNodes()](#Tree+pruneAllNodes) ⇒
   * [.insert(data)](#Tree+insert) ⇒ <code>object</code>
   * [.remove(node, trim)](#Tree+remove)
   * [.trimBranchFrom(node)](#Tree+trimBranchFrom)
-  * [.traverser()](#Tree+traverser) ⇒
   * [.insertTo(criteria, data)](#Tree+insertTo) ⇒ <code>object</code>
   * [.insertToNode(node, data)](#Tree+insertToNode) ⇒ <code>object</code>
-  * [.getChildNodesOf()](#Tree+getChildNodesOf) ⇒ <code>array</code>
-  * [.getParentNodeOf()](#Tree+getParentNodeOf) ⇒ <code>object</code>
   * [.export(criteria)](#Tree+export) ⇒ <code>object</code>
   * [.import(data, childProperty, criteria)](#Tree+import) ⇒ <code>object</code>
 
+<a name="Tree+rootNode"></a>
+### tree.rootNode() ⇒ <code>[TreeNode](#TreeNode)</code>
+Returns a root node of the tree.
+
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>[TreeNode](#TreeNode)</code> - - root node of the tree.  
+<a name="Tree+currentNode"></a>
+### tree.currentNode() ⇒ <code>[TreeNode](#TreeNode)</code>
+Returns a current node in a tree
+
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>[TreeNode](#TreeNode)</code> - - current node of the tree.  
+<a name="Tree+traverser"></a>
+### tree.traverser() ⇒
+Getter function that returns [Traverser](#Traverser).
+
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: [Traverser](#Traverser) for the tree.  
 <a name="Tree+isEmpty"></a>
 ### tree.isEmpty() ⇒ <code>boolean</code>
 Checks whether tree is empty.
@@ -224,12 +270,6 @@ Remove an entire branch starting with specified node.
 | --- | --- | --- |
 | node | <code>object</code> | [TreeNode](#TreeNode) from which entire branch has to be removed. |
 
-<a name="Tree+traverser"></a>
-### tree.traverser() ⇒
-Getter function that returns [Traverser](#Traverser).
-
-**Kind**: instance method of <code>[Tree](#Tree)</code>  
-**Returns**: [Traverser](#Traverser) for the tree.  
 <a name="Tree+insertTo"></a>
 ### tree.insertTo(criteria, data) ⇒ <code>object</code>
 Inserts node to a particular node present in the tree. Particular node here is searched
@@ -291,28 +331,6 @@ var greenApple = {
 // Insert data to node
 tree.insertToNode(node, greenApple);
 ```
-<a name="Tree+getChildNodesOf"></a>
-### tree.getChildNodesOf() ⇒ <code>array</code>
-Get all child nodes of [TreeNode](#TreeNode) specified.
-
-**Kind**: instance method of <code>[Tree](#Tree)</code>  
-**Returns**: <code>array</code> - - array of [TreeNode](#TreeNode)s.  
-
-| Type | Description |
-| --- | --- |
-| <code>object</code> | [TreeNode](#TreeNode) of which child nodes are to be accessed. |
-
-<a name="Tree+getParentNodeOf"></a>
-### tree.getParentNodeOf() ⇒ <code>object</code>
-Get parent node of [TreeNode](#TreeNode) specified.
-
-**Kind**: instance method of <code>[Tree](#Tree)</code>  
-**Returns**: <code>object</code> - - [TreeNode](#TreeNode).  
-
-| Type | Description |
-| --- | --- |
-| <code>object</code> | [TreeNode](#TreeNode) of which parent node is to be accessed. |
-
 <a name="Tree+export"></a>
 ### tree.export(criteria) ⇒ <code>object</code>
 Exports the tree data in format specified. It maintains herirachy by adding

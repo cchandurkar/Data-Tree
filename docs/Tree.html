@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#getChildNodesOf">getChildNodesOf</a></li><li data-type='method'><a href="Tree.html#getParentNodeOf">getParentNodeOf</a></li><li data-type='method'><a href="Tree.html#import">import</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#isEmpty">isEmpty</a></li><li data-type='method'><a href="Tree.html#pruneAllNodes">pruneAllNodes</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li><li data-type='method'><a href="Tree.html#trimBranchFrom">trimBranchFrom</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li><li data-type='method'><a href="TreeNode.html#siblings">siblings</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#currentNode">currentNode</a></li><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#import">import</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#isEmpty">isEmpty</a></li><li data-type='method'><a href="Tree.html#pruneAllNodes">pruneAllNodes</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#rootNode">rootNode</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li><li data-type='method'><a href="Tree.html#trimBranchFrom">trimBranchFrom</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#childNodes">childNodes</a></li><li data-type='method'><a href="TreeNode.html#data">data</a></li><li data-type='method'><a href="TreeNode.html#depth">depth</a></li><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li><li data-type='method'><a href="TreeNode.html#parentNode">parentNode</a></li><li data-type='method'><a href="TreeNode.html#siblings">siblings</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <div id="main">
@@ -154,6 +154,110 @@
 
     
 
+    <h4 class="name" id="currentNode"><span class="type-signature"></span>currentNode<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="TreeNode.html">TreeNode</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns a current node in a tree
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line68">line 68</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - current node of the tree.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="TreeNode.html">TreeNode</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id="export"><span class="type-signature"></span>export<span class="signature">(criteria)</span><span class="type-signature"> &rarr; {object}</span></h4>
 
     
@@ -257,7 +361,7 @@ that maintains the heirarchy of nodes.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line286">line 286</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line295">line 295</a>
     </li></ul></dd>
     
 
@@ -340,304 +444,6 @@ var exported = tree.export(function(data){
   }
  ]
 }</code></pre>
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getChildNodesOf"><span class="type-signature"></span>getChildNodesOf<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Get all child nodes of <a href="TreeNode.html">TreeNode</a> specified.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><a href="TreeNode.html">TreeNode</a> of which child nodes are to be accessed.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line260">line 260</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - array of <a href="TreeNode.html">TreeNode</a>s.
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">array</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getParentNodeOf"><span class="type-signature"></span>getParentNodeOf<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Get parent node of <a href="TreeNode.html">TreeNode</a> specified.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><a href="TreeNode.html">TreeNode</a> of which parent node is to be accessed.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line273">line 273</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    - <a href="TreeNode.html">TreeNode</a>.
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -794,7 +600,7 @@ and MUST return a formatted data that has to be imported in a tree.</td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line365">line 365</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line374">line 374</a>
     </li></ul></dd>
     
 
@@ -985,7 +791,7 @@ New node gets inserted to the `_currentNode` which updates itself upon every ins
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line77">line 77</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line121">line 121</a>
     </li></ul></dd>
     
 
@@ -1179,7 +985,7 @@ in parameter and MUST return boolean indicating whether that data satisfies your
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line190">line 190</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line224">line 224</a>
     </li></ul></dd>
     
 
@@ -1375,7 +1181,7 @@ tree.insertTo(function(data){
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line226">line 226</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line260">line 260</a>
     </li></ul></dd>
     
 
@@ -1497,7 +1303,7 @@ tree.insertToNode(node, greenApple);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line52">line 52</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line96">line 96</a>
     </li></ul></dd>
     
 
@@ -1601,7 +1407,7 @@ tree.insertToNode(node, greenApple);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line64">line 64</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line108">line 108</a>
     </li></ul></dd>
     
 
@@ -1765,7 +1571,7 @@ tree.insertToNode(node, greenApple);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line112">line 112</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line158">line 158</a>
     </li></ul></dd>
     
 
@@ -1788,6 +1594,110 @@ tree.insertToNode(node, greenApple);</code></pre>
 
 
 
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="rootNode"><span class="type-signature"></span>rootNode<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="TreeNode.html">TreeNode</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns a root node of the tree.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line56">line 56</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - root node of the tree.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="TreeNode.html">TreeNode</a></span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1847,7 +1757,7 @@ tree.insertToNode(node, greenApple);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line178">line 178</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -1988,7 +1898,7 @@ tree.insertToNode(node, greenApple);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line149">line 149</a>
+        <a href="tree.js.html">tree.js</a>, <a href="tree.js.html#line195">line 195</a>
     </li></ul></dd>
     
 
@@ -2032,7 +1942,7 @@ tree.insertToNode(node, greenApple);</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Nov 29 2015 13:15:49 GMT-0500 (EST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Jan 24 2016 14:10:15 GMT-0500 (EST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

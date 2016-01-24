@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#getChildNodesOf">getChildNodesOf</a></li><li data-type='method'><a href="Tree.html#getParentNodeOf">getParentNodeOf</a></li><li data-type='method'><a href="Tree.html#import">import</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#isEmpty">isEmpty</a></li><li data-type='method'><a href="Tree.html#pruneAllNodes">pruneAllNodes</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li><li data-type='method'><a href="Tree.html#trimBranchFrom">trimBranchFrom</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li><li data-type='method'><a href="TreeNode.html#siblings">siblings</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#currentNode">currentNode</a></li><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#import">import</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#isEmpty">isEmpty</a></li><li data-type='method'><a href="Tree.html#pruneAllNodes">pruneAllNodes</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#rootNode">rootNode</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li><li data-type='method'><a href="Tree.html#trimBranchFrom">trimBranchFrom</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#childNodes">childNodes</a></li><li data-type='method'><a href="TreeNode.html#data">data</a></li><li data-type='method'><a href="TreeNode.html#depth">depth</a></li><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li><li data-type='method'><a href="TreeNode.html#parentNode">parentNode</a></li><li data-type='method'><a href="TreeNode.html#siblings">siblings</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <div id="main">
@@ -69,6 +69,10 @@ module.exports = (function(){
     this._tree = tree;
 
   }
+
+  // ------------------------------------
+  // Methods
+  // ------------------------------------
 
   /**
    * Searches a tree in DFS fashion. Requires a search criteria to be provided.
@@ -126,14 +130,19 @@ module.exports = (function(){
     var foundNode = null;
 
     // Find nodes recursively
-    (function recur(node){
-      if(node.matchCriteria(criteria)){
-        foundNode = node;
-        return foundNode;
-      } else {
-        node._childNodes.some(recur);
+    (function expand(queue){
+      while(queue.length){
+        var current = queue.splice(0, 1)[0];
+        if(current.matchCriteria(criteria)){
+          foundNode = current;
+          return;
+        }
+        current._childNodes.forEach(function(_child){
+          queue.push(_child);
+        });
       }
-    }(this._tree._rootNode));
+    }([this._tree._rootNode]));
+
 
     return foundNode;
 
@@ -173,12 +182,20 @@ module.exports = (function(){
    * });
    */
   Traverser.prototype.traverseBFS = function(callback){
-    callback(this._tree._rootNode);
-    (function recur(node){
-      node._childNodes.forEach(callback);
-      node._childNodes.forEach(recur);
-    }(this._tree._rootNode));
+    (function expand(queue){
+      while(queue.length){
+        var current = queue.splice(0, 1)[0];
+        callback(current);
+        current._childNodes.forEach(function(_child){
+          queue.push(_child);
+        });
+      }
+    }([this._tree._rootNode]));
   };
+
+  // ------------------------------------
+  // Export
+  // ------------------------------------
 
   return Traverser;
 
@@ -195,7 +212,7 @@ module.exports = (function(){
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Nov 29 2015 13:15:49 GMT-0500 (EST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Jan 24 2016 14:10:15 GMT-0500 (EST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

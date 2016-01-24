@@ -30,6 +30,10 @@ module.exports = (function(){
 
   }
 
+  // ------------------------------------
+  // Methods
+  // ------------------------------------
+
   /**
    * Searches a tree in DFS fashion. Requires a search criteria to be provided.
    *
@@ -94,7 +98,7 @@ module.exports = (function(){
           return;
         }
         current._childNodes.forEach(function(_child){
-          queue.push(_child)
+          queue.push(_child);
         });
       }
     }([this._tree._rootNode]));
@@ -143,12 +147,15 @@ module.exports = (function(){
         var current = queue.splice(0, 1)[0];
         callback(current);
         current._childNodes.forEach(function(_child){
-          queue.push(_child)
+          queue.push(_child);
         });
       }
     }([this._tree._rootNode]));
   };
 
+  // ------------------------------------
+  // Export
+  // ------------------------------------
 
   return Traverser;
 

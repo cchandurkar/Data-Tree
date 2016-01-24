@@ -49,6 +49,50 @@ module.exports = (function(){
 
   }
 
+  // ------------------------------------
+  // Getters and Setters
+  // ------------------------------------
+
+  /**
+   * Returns a root node of the tree.
+   *
+   * @method rootNode
+   * @memberof Tree
+   * @instance
+   * @return {TreeNode} - root node of the tree.
+   */
+  Tree.prototype.rootNode = function(){
+    return this._rootNode;
+  };
+
+  /**
+   * Returns a current node in a tree
+   *
+   * @method currentNode
+   * @memberof Tree
+   * @instance
+   * @return {TreeNode} - current node of the tree.
+   */
+  Tree.prototype.currentNode = function(){
+    return this._currentNode;
+  };
+
+  /**
+   * Getter function that returns {@link Traverser}.
+   *
+   * @method traverser
+   * @memberof Tree
+   * @instance
+   * @return {@link Traverser} for the tree.
+   */
+  Tree.prototype.traverser = function(){
+    return this._traverser;
+  };
+
+  // ------------------------------------
+  // Methods
+  // ------------------------------------
+
   /**
    * Checks whether tree is empty.
    *
@@ -178,18 +222,6 @@ module.exports = (function(){
   };
 
   /**
-   * Getter function that returns {@link Traverser}.
-   *
-   * @method traverser
-   * @memberof Tree
-   * @instance
-   * @return {@link Traverser} for the tree.
-   */
-  Tree.prototype.traverser = function(){
-    return this._traverser;
-  };
-
-  /**
    * Inserts node to a particular node present in the tree. Particular node here is searched
    * in the tree based on the criteria provided.
    *
@@ -258,32 +290,6 @@ module.exports = (function(){
     node._childNodes.push(newNode);
     this._currentNode = newNode;
     return newNode;
-  };
-
-  /**
-   * Get all child nodes of {@link TreeNode} specified.
-   *
-   * @method getChildNodesOf
-   * @memberof Tree
-   * @instance
-   * @param {object} - {@link TreeNode} of which child nodes are to be accessed.
-   * @return {array} - array of {@link TreeNode}s.
-   */
-  Tree.prototype.getChildNodesOf = function(node){
-    return node._childNodes;
-  };
-
-  /**
-   * Get parent node of {@link TreeNode} specified.
-   *
-   * @method getParentNodeOf
-   * @memberof Tree
-   * @instance
-   * @param {object} - {@link TreeNode} of which parent node is to be accessed.
-   * @return {object} - {@link TreeNode}.
-   */
-  Tree.prototype.getParentNodeOf = function(node){
-    return node._parentNode;
   };
 
   /**
@@ -460,6 +466,10 @@ module.exports = (function(){
    * @callback criteria
    * @param data {object} - data of particular {@link TreeNode}
    */
+
+   // ------------------------------------
+   // Export
+   // ------------------------------------
 
   return Tree;
 

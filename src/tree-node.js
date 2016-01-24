@@ -51,8 +51,64 @@ module.exports = (function(){
      * @default -1
      */
     this._depth = -1;
-    
+
   }
+
+  // ------------------------------------
+  // Getters and Setters
+  // ------------------------------------
+
+  /**
+   * Returns a parent node of current node
+   *
+   * @method parentNode
+   * @memberof TreeNode
+   * @instance
+   * @return {TreeNode} - parent of current node
+   */
+  TreeNode.prototype.parentNode = function(){
+    return this._parentNode;
+  };
+
+  /**
+   * Returns an array of child nodes
+   *
+   * @method childNodes
+   * @memberof TreeNode
+   * @instance
+   * @return {array} - array of child nodes
+   */
+  TreeNode.prototype.childNodes = function(){
+    return this._childNodes;
+  };
+
+  /**
+   * Returns the data belonging to this node. Data is what user sets using `insert` and `insertTo` methods.
+   *
+   * @method data
+   * @memberof TreeNode
+   * @instance
+   * @return {object | array | string | number | null} - data belonging to this node
+   */
+  TreeNode.prototype.data = function(){
+    return this._data;
+  };
+
+  /**
+   * Depth of the node. Indicates the level at which node lies in a tree.
+   *
+   * @method depth
+   * @memberof TreeNode
+   * @instance
+   * @return {number} - depth of node
+   */
+  TreeNode.prototype.depth = function(){
+    return this._data;
+  };
+
+  // ------------------------------------
+  // Methods
+  // ------------------------------------
 
   /**
    * Indicates whether this node matches the specified criteria. It triggers a callback criteria function that returns something.
@@ -84,6 +140,10 @@ module.exports = (function(){
       return _child !== thiss;
     });
   };
+
+  // ------------------------------------
+  // Export
+  // ------------------------------------
 
   return TreeNode;
 

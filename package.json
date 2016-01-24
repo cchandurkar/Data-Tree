@@ -1,8 +1,10 @@
 {
   "name": "data-tree",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "Data oriented tree structure that unleashes the power of callbacks to create, search and traverse the tree.",
   "main": "index.js",
+  "homepage": "http://cchandurkar.github.io/data-tree/",
+  "icon": "http://cchandurkar.github.io/data-tree/icon/icon.png",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,7 +30,7 @@
     "traversal",
     "traverse"
   ],
-  "author": "Chaitanya Chandurkar",
+  "author": "Chaitanya Chandurkar <cchandurkar@gmail.com> (http://cchandurkar.me/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cchandurkar/Data-Tree/issues"

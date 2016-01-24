@@ -121,7 +121,7 @@ Represents a node in the tree.
   * [new TreeNode(data)](#new_TreeNode_new)
   * [.parentNode()](#TreeNode+parentNode) ⇒ <code>[TreeNode](#TreeNode)</code>
   * [.childNodes()](#TreeNode+childNodes) ⇒ <code>array</code>
-  * [.data()](#TreeNode+data) ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
+  * [.data(_data)](#TreeNode+data) ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
   * [.depth()](#TreeNode+depth) ⇒ <code>number</code>
   * [.matchCriteria(callback)](#TreeNode+matchCriteria)
   * [.siblings()](#TreeNode+siblings) ⇒ <code>array</code>
@@ -146,11 +146,16 @@ Returns an array of child nodes
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
 **Returns**: <code>array</code> - - array of child nodes  
 <a name="TreeNode+data"></a>
-### treeNode.data() ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
-Returns the data belonging to this node. Data is what user sets using `insert` and `insertTo` methods.
+### treeNode.data(_data) ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
+Sets or gets the data belonging to this node. Data is what user sets using `insert` and `insertTo` methods.
 
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
 **Returns**: <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code> - - data belonging to this node  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| _data | <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code> | data which is to be stored |
+
 <a name="TreeNode+depth"></a>
 ### treeNode.depth() ⇒ <code>number</code>
 Depth of the node. Indicates the level at which node lies in a tree.

@@ -1,5 +1,5 @@
 # Data Tree
-Data oriented tree structure that unleashes the power of callbacks to create, search and traverse tree.
+Data oriented tree structure that unleashes the power of callbacks to create, search and traverse tree. Data tree keeps the track of current node which updates upon insertion and deletion of the node from tree.
 
 ## Install:
 `$ npm install data-tree`<br /><br />
@@ -20,9 +20,10 @@ Following examples will guide you about how to create tree, insert/remove nodes 
 tree.insert(183);
 
 // Insert array of values
+// NOTE: This does not create 3 different nodes. It considers an array as a whole data and puts in a single node.
 tree.insert([34, 565, 78]);
 
-// Insert complex data
+// Insert Objects
 tree.insert({
   key: '#berries',
   value: { name: 'Apple', color: 'Red'}
@@ -49,7 +50,7 @@ tree.insertTo(function(data){
 }, greenApple);
 ```
 
-### Insert data to node using its instance
+### Create and append node using parent node's instance
 ```javascript
 // Insert data
 var node = tree.insert({
@@ -64,6 +65,7 @@ var greenApple = {
 };
 
 // Insert data to node
+// This will create a new node with given data and append to parent node provided
 tree.insertToNode(node, greenApple);
 ```
 
@@ -96,14 +98,14 @@ var node = tree.traverser().searchDFS(function(data){
 ### Traverse BFS
 ```javascript
 tree.traverser().traverseBFS(function(node){
-  console.log(node.data);
+  console.log(node.data());
 });
 ```
 
 #### Traverse DFS
 ```javascript
 tree.traverser().traverseDFS(function(node){
-  console.log(node.data);
+  console.log(node.data());
 });
 ```
 

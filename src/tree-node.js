@@ -83,15 +83,20 @@ module.exports = (function(){
   };
 
   /**
-   * Returns the data belonging to this node. Data is what user sets using `insert` and `insertTo` methods.
+   * Sets or gets the data belonging to this node. Data is what user sets using `insert` and `insertTo` methods.
    *
    * @method data
    * @memberof TreeNode
    * @instance
+   * @param {object | array | string | number | null} _data - data which is to be stored
    * @return {object | array | string | number | null} - data belonging to this node
    */
-  TreeNode.prototype.data = function(){
-    return this._data;
+  TreeNode.prototype.data = function(_data){
+    if(arguments.length > 0){
+      this._data = data;
+    } else {
+      return this._data;
+    }
   };
 
   /**

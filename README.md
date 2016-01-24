@@ -30,7 +30,7 @@ tree.insert({
 });
 ```
 
-### Insert data to node that matches given criteria
+### Create and append node to a parent node that satisfies the given criteria
 ```javascript
 // Insert data
 tree.insert({

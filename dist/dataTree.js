@@ -321,6 +321,79 @@ module.exports = (function(){
     });
   };
 
+  /**
+   * Exports the node data in format specified. It maintains herirachy by adding
+   * additional "children" property to returned value of `criteria` callback.
+   *
+   * @method export
+   * @memberof TreeNode
+   * @instance
+   * @param {TreeNode~criteria} criteria - Callback function that receives data in parameter
+   * and MUST return a formatted data that has to be exported. A new property "children" is added to object returned
+   * that maintains the heirarchy of nodes.
+   * @return {object} - {@link TreeNode}.
+   * @example
+   *
+   * var rootNode = tree.insert({
+   *   key: '#apple',
+   *   value: { name: 'Apple', color: 'Red'}
+   * });
+   *
+   * tree.insert({
+   *   key: '#greenapple',
+   *   value: { name: 'Green Apple', color: 'Green'}
+   * });
+   *
+   * tree.insertToNode(rootNode,  {
+   *  key: '#someanotherapple',
+   *  value: { name: 'Some Apple', color: 'Some Color' }
+   * });
+   *
+   * // Export the tree
+   * var exported = rootNode.export(function(data){
+   *  return { name: data.value.name };
+   * });
+   *
+   * // Result in `exported`
+   * {
+   * "name": "Apple",
+   * "children": [
+   *   {
+   *     "name": "Green Apple",
+   *     "children": []
+   *   },
+   *   {
+   *     "name": "Some Apple",
+   *     "children": []
+   *  }
+   * ]
+   *}
+   *
+   */
+  TreeNode.prototype.export = function(criteria){
+
+    // Check if criteria is specified
+    if(!criteria || typeof criteria !== 'function')
+      throw new Error('Export criteria not specified');
+
+    // Export every node recursively
+    var exportRecur = function(node){
+      var exported = node.matchCriteria(criteria);
+      if(!exported || typeof exported !== 'object'){
+        throw new Error('Export criteria should always return an object and it cannot be null.');
+      } else {
+        exported.children = [];
+        node._childNodes.forEach(function(_child){
+          exported.children.push(exportRecur(_child));
+        });
+
+        return exported;
+      }
+    };
+
+    return exportRecur(this);
+  };
+
   // ------------------------------------
   // Export
   // ------------------------------------
@@ -675,31 +748,12 @@ module.exports = (function(){
    */
   Tree.prototype.export = function(criteria){
 
-    // Check if criteria is specified
-    if(!criteria || typeof criteria !== 'function')
-    throw new Error('Export criteria not specified');
-
     // Check if rootNode is not null
     if(!this._rootNode){
       return null;
     }
 
-    // Export every node recursively
-    var exportRecur = function(node){
-      var exported = node.matchCriteria(criteria);
-      if(!exported || typeof exported !== 'object'){
-        throw new Error('Export criteria should always return an object and it cannot be null.');
-      } else {
-        exported.children = [];
-        node._childNodes.forEach(function(_child){
-          exported.children.push(exportRecur(_child));
-        });
-
-        return exported;
-      }
-    };
-
-    return exportRecur(this._rootNode);
+    return this._rootNode.export(criteria);
   };
 
 

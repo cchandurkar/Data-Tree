@@ -1,4 +1,6 @@
 # Data Tree
+
+[![Join the chat at https://gitter.im/cchandurkar/Data-Tree](https://badges.gitter.im/cchandurkar/Data-Tree.svg)](https://gitter.im/cchandurkar/Data-Tree?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Data oriented tree structure that unleashes the power of callbacks to create, search and traverse tree. Data tree keeps the track of current node which updates upon insertion and deletion of the node from tree.
 
 ## Install:

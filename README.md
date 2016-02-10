@@ -5,6 +5,8 @@
 # Data Tree
 Data oriented tree structure that unleashes the power of callbacks to create, search and traverse tree. Data tree keeps the track of current node which updates upon insertion and deletion of the node from tree.
 
+<img height="120" width="120" src="http://cchandurkar.github.io/data-tree/icon/icon.png"/>
+
 ## Install:
 `$ npm install data-tree`<br /><br />
 Then use via `require('data-tree')` **OR** use browserified builds from `dist/dataTree.js` **OR** `dist/dataTree.min.js` in `<script />` tag. Browserified builds available at [dataTree.js](http://cchandurkar.github.io/data-tree/dataTree.js) and [dataTree.min.js](http://cchandurkar.github.io/data-tree/dataTree.min.js) can be used in `<script/>` directly.

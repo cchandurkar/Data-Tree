@@ -1,12 +1,12 @@
 {
   "name": "data-tree",
-  "version": "1.1.22",
+  "version": "1.1.23",
   "description": "Data oriented tree structure that unleashes the power of callbacks to create, search and traverse the tree.",
   "main": "index.js",
-  "homepage": "http://cchandurkar.github.io/data-tree/",
+  "homepage": "https://github.com/cchandurkar/Data-Tree#readme",
   "icon": "logo/logo.png",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/jasmine"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,6 @@
   "bugs": {
     "url": "https://github.com/cchandurkar/Data-Tree/issues"
   },
-  "homepage": "https://github.com/cchandurkar/Data-Tree#readme",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-browserify": "^4.0.1",
@@ -45,6 +44,7 @@
     "grunt-jsdoc": "^1.0.0",
     "grunt-jsdoc-to-markdown": "^1.1.1",
     "ink-docstrap": "^0.5.2",
+    "jasmine": "^2.4.1",
     "minami": "^1.1.1"
   }
 }

@@ -6,9 +6,12 @@ module.exports = function(grunt) {
 
       // JShint the src files
       jshint: {
+        options:{
+          loopfunc: true
+        },
         files:{
           src: ['./src/**/*.js']
-        }
+        },
       },
 
       // Browserify `src/index.js`

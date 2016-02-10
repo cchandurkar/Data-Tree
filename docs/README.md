@@ -1,4 +1,5 @@
 ## Classes
+
 <dl>
 <dt><a href="#Traverser">Traverser</a></dt>
 <dd><p>Represents a traverser which searches/traverses the tree in BFS and DFS fashion.</p>
@@ -10,7 +11,9 @@
 <dd><p>Represents the tree in which data nodes can be inserted</p>
 </dd>
 </dl>
+
 ## Typedefs
+
 <dl>
 <dt><a href="#criteria">criteria</a> : <code>function</code></dt>
 <dd><p>Callback that receives a node data in parameter and expects user to return one of following:</p>
@@ -21,6 +24,7 @@
 </ol>
 </dd>
 </dl>
+
 <a name="Traverser"></a>
 ## Traverser
 Represents a traverser which searches/traverses the tree in BFS and DFS fashion.
@@ -28,11 +32,11 @@ Represents a traverser which searches/traverses the tree in BFS and DFS fashion.
 **Kind**: global class  
 
 * [Traverser](#Traverser)
-  * [new Traverser(tree)](#new_Traverser_new)
-  * [.searchDFS(criteria)](#Traverser+searchDFS) ⇒ <code>object</code>
-  * [.searchBFS(criteria)](#Traverser+searchBFS) ⇒ <code>object</code>
-  * [.traverseDFS(callback)](#Traverser+traverseDFS)
-  * [.traverseBFS(callback)](#Traverser+traverseBFS)
+    * [new Traverser(tree)](#new_Traverser_new)
+    * [.searchDFS(criteria)](#Traverser+searchDFS) ⇒ <code>object</code>
+    * [.searchBFS(criteria)](#Traverser+searchBFS) ⇒ <code>object</code>
+    * [.traverseDFS(callback)](#Traverser+traverseDFS)
+    * [.traverseBFS(callback)](#Traverser+traverseBFS)
 
 <a name="new_Traverser_new"></a>
 ### new Traverser(tree)
@@ -118,13 +122,14 @@ Represents a node in the tree.
 **Kind**: global class  
 
 * [TreeNode](#TreeNode)
-  * [new TreeNode(data)](#new_TreeNode_new)
-  * [.parentNode()](#TreeNode+parentNode) ⇒ <code>[TreeNode](#TreeNode)</code>
-  * [.childNodes()](#TreeNode+childNodes) ⇒ <code>array</code>
-  * [.data(_data)](#TreeNode+data) ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
-  * [.depth()](#TreeNode+depth) ⇒ <code>number</code>
-  * [.matchCriteria(callback)](#TreeNode+matchCriteria)
-  * [.siblings()](#TreeNode+siblings) ⇒ <code>array</code>
+    * [new TreeNode(data)](#new_TreeNode_new)
+    * [.parentNode()](#TreeNode+parentNode) ⇒ <code>[TreeNode](#TreeNode)</code>
+    * [.childNodes()](#TreeNode+childNodes) ⇒ <code>array</code>
+    * [.data(_data)](#TreeNode+data) ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
+    * [.depth()](#TreeNode+depth) ⇒ <code>number</code>
+    * [.matchCriteria(callback)](#TreeNode+matchCriteria)
+    * [.siblings()](#TreeNode+siblings) ⇒ <code>array</code>
+    * [.export(criteria)](#TreeNode+export) ⇒ <code>object</code>
 
 <a name="new_TreeNode_new"></a>
 ### new TreeNode(data)
@@ -178,6 +183,55 @@ get sibling nodes.
 
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
 **Returns**: <code>array</code> - - array of instances of [TreeNode](#TreeNode)  
+<a name="TreeNode+export"></a>
+### treeNode.export(criteria) ⇒ <code>object</code>
+Exports the node data in format specified. It maintains herirachy by adding
+additional "children" property to returned value of `criteria` callback.
+
+**Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
+**Returns**: <code>object</code> - - [TreeNode](#TreeNode).  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| criteria | <code>TreeNode~criteria</code> | Callback function that receives data in parameter and MUST return a formatted data that has to be exported. A new property "children" is added to object returned that maintains the heirarchy of nodes. |
+
+**Example**  
+```js
+var rootNode = tree.insert({
+  key: '#apple',
+  value: { name: 'Apple', color: 'Red'}
+});
+
+tree.insert({
+  key: '#greenapple',
+  value: { name: 'Green Apple', color: 'Green'}
+});
+
+tree.insertToNode(rootNode,  {
+ key: '#someanotherapple',
+ value: { name: 'Some Apple', color: 'Some Color' }
+});
+
+// Export the tree
+var exported = rootNode.export(function(data){
+ return { name: data.value.name };
+});
+
+// Result in `exported`
+{
+ "name": "Apple",
+ "children": [
+   {
+     "name": "Green Apple",
+     "children": []
+   },
+   {
+     "name": "Some Apple",
+     "children": []
+  }
+ ]
+}
+```
 <a name="Tree"></a>
 ## Tree
 Represents the tree in which data nodes can be inserted
@@ -185,18 +239,18 @@ Represents the tree in which data nodes can be inserted
 **Kind**: global class  
 
 * [Tree](#Tree)
-  * [.rootNode()](#Tree+rootNode) ⇒ <code>[TreeNode](#TreeNode)</code>
-  * [.currentNode()](#Tree+currentNode) ⇒ <code>[TreeNode](#TreeNode)</code>
-  * [.traverser()](#Tree+traverser) ⇒
-  * [.isEmpty()](#Tree+isEmpty) ⇒ <code>boolean</code>
-  * [.pruneAllNodes()](#Tree+pruneAllNodes) ⇒
-  * [.insert(data)](#Tree+insert) ⇒ <code>object</code>
-  * [.remove(node, trim)](#Tree+remove)
-  * [.trimBranchFrom(node)](#Tree+trimBranchFrom)
-  * [.insertTo(criteria, data)](#Tree+insertTo) ⇒ <code>object</code>
-  * [.insertToNode(node, data)](#Tree+insertToNode) ⇒ <code>object</code>
-  * [.export(criteria)](#Tree+export) ⇒ <code>object</code>
-  * [.import(data, childProperty, criteria)](#Tree+import) ⇒ <code>object</code>
+    * [.rootNode()](#Tree+rootNode) ⇒ <code>[TreeNode](#TreeNode)</code>
+    * [.currentNode()](#Tree+currentNode) ⇒ <code>[TreeNode](#TreeNode)</code>
+    * [.traverser()](#Tree+traverser) ⇒
+    * [.isEmpty()](#Tree+isEmpty) ⇒ <code>boolean</code>
+    * [.pruneAllNodes()](#Tree+pruneAllNodes) ⇒
+    * [.insert(data)](#Tree+insert) ⇒ <code>object</code>
+    * [.remove(node, trim)](#Tree+remove)
+    * [.trimBranchFrom(node)](#Tree+trimBranchFrom)
+    * [.insertTo(criteria, data)](#Tree+insertTo) ⇒ <code>object</code>
+    * [.insertToNode(node, data)](#Tree+insertToNode) ⇒ <code>object</code>
+    * [.export(criteria)](#Tree+export) ⇒ <code>object</code>
+    * [.import(data, childProperty, criteria)](#Tree+import) ⇒ <code>object</code>
 
 <a name="Tree+rootNode"></a>
 ### tree.rootNode() ⇒ <code>[TreeNode](#TreeNode)</code>

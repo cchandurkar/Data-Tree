@@ -147,13 +147,13 @@ module.exports = (function(){
   };
 
   /**
-   * Exports the tree data in format specified. It maintains herirachy by adding
+   * Exports the node data in format specified. It maintains herirachy by adding
    * additional "children" property to returned value of `criteria` callback.
    *
    * @method export
-   * @memberof Tree
+   * @memberof TreeNode
    * @instance
-   * @param {Tree~criteria} criteria - Callback function that receives data in parameter
+   * @param {TreeNode~criteria} criteria - Callback function that receives data in parameter
    * and MUST return a formatted data that has to be exported. A new property "children" is added to object returned
    * that maintains the heirarchy of nodes.
    * @return {object} - {@link TreeNode}.
@@ -175,7 +175,7 @@ module.exports = (function(){
    * });
    *
    * // Export the tree
-   * var exported = tree.export(function(data){
+   * var exported = rootNode.export(function(data){
    *  return { name: data.value.name };
    * });
    *

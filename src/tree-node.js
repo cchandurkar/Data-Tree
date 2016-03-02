@@ -108,7 +108,7 @@ module.exports = (function(){
    * @return {number} - depth of node
    */
   TreeNode.prototype.depth = function(){
-    return this._data;
+    return this._depth;
   };
 
   // ------------------------------------

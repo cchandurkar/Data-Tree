@@ -293,6 +293,50 @@ module.exports = (function(){
   };
 
   /**
+   * Finds a distance between two nodes
+   *
+   * @method distanceBetween
+   * @memberof Tree
+   * @instance
+   * @param {@link TreeNode} fromNode -  Node from which distance is to be calculated
+   * @param {@link TreeNode} toNode - Node to which distance is to be calculated
+   * @return {Number} - distance(number of hops) between two nodes.
+   */
+  Tree.prototype.distanceBetween = function(fromNode, toNode){
+    return fromNode.distanceToRoot() + toNode.distanceToRoot() - 2 *  this.findCommonParent(fromNode, toNode).distanceToRoot();
+  };
+
+  /**
+   * Finds a common parent between nodes
+   *
+   * @method findCommonParent
+   * @memberof Tree
+   * @instance
+   * @param {@link TreeNode} fromNode
+   * @param {@link TreeNode} toNode
+   * @return {@link TreeNode} - common parent
+   */
+  Tree.prototype.findCommonParent = function(fromNode, toNode){
+
+    // Get ancestory of both nodes
+    var fromNodeAncestors = fromNode.getAncestry();
+    var toNodeAncestors = toNode.getAncestry();
+
+    // Find Commont
+    var common = null;
+    fromNodeAncestors.some(function(ancestor){
+      if(toNodeAncestors.indexOf(ancestor) !== -1){
+        common = ancestor;
+        return true;
+      }
+    });
+
+    // Return Common
+    return common;
+
+  };
+
+  /**
    * Exports the tree data in format specified. It maintains herirachy by adding
    * additional "children" property to returned value of `criteria` callback.
    *

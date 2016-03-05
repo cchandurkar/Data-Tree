@@ -129,6 +129,8 @@ Represents a node in the tree.
     * [.depth()](#TreeNode+depth) ⇒ <code>number</code>
     * [.matchCriteria(callback)](#TreeNode+matchCriteria)
     * [.siblings()](#TreeNode+siblings) ⇒ <code>array</code>
+    * [.distanceToRoot()](#TreeNode+distanceToRoot) ⇒ <code>array</code>
+    * [.getAncestry()](#TreeNode+getAncestry) ⇒ <code>Array</code>
     * [.export(criteria)](#TreeNode+export) ⇒ <code>object</code>
 
 <a name="new_TreeNode_new"></a>
@@ -183,6 +185,18 @@ get sibling nodes.
 
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
 **Returns**: <code>array</code> - - array of instances of [TreeNode](#TreeNode)  
+<a name="TreeNode+distanceToRoot"></a>
+### treeNode.distanceToRoot() ⇒ <code>array</code>
+Finds distance of node from root node
+
+**Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
+**Returns**: <code>array</code> - - array of instances of [TreeNode](#TreeNode)  
+<a name="TreeNode+getAncestry"></a>
+### treeNode.getAncestry() ⇒ <code>Array</code>
+Gets an array of all ancestor nodes
+
+**Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
+**Returns**: <code>Array</code> - - array of ancestor nodes  
 <a name="TreeNode+export"></a>
 ### treeNode.export(criteria) ⇒ <code>object</code>
 Exports the node data in format specified. It maintains herirachy by adding
@@ -249,6 +263,8 @@ Represents the tree in which data nodes can be inserted
     * [.trimBranchFrom(node)](#Tree+trimBranchFrom)
     * [.insertTo(criteria, data)](#Tree+insertTo) ⇒ <code>object</code>
     * [.insertToNode(node, data)](#Tree+insertToNode) ⇒ <code>object</code>
+    * [.distanceBetween({@link, {@link)](#Tree+distanceBetween) ⇒ <code>Number</code>
+    * [.findCommonParent({@link, {@link)](#Tree+findCommonParent) ⇒
     * [.export(criteria)](#Tree+export) ⇒ <code>object</code>
     * [.import(data, childProperty, criteria)](#Tree+import) ⇒ <code>object</code>
 
@@ -390,6 +406,30 @@ var greenApple = {
 // Insert data to node
 tree.insertToNode(node, greenApple);
 ```
+<a name="Tree+distanceBetween"></a>
+### tree.distanceBetween({@link, {@link) ⇒ <code>Number</code>
+Finds a distance between two nodes
+
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: <code>Number</code> - - distance(number of hops) between two nodes.  
+
+| Param | Description |
+| --- | --- |
+| {@link | TreeNode} fromNode -  Node from which distance is to be calculated |
+| {@link | TreeNode} toNode - Node to which distance is to be calculated |
+
+<a name="Tree+findCommonParent"></a>
+### tree.findCommonParent({@link, {@link) ⇒
+Finds a common parent between nodes
+
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: [TreeNode](#TreeNode) - common parent  
+
+| Param | Description |
+| --- | --- |
+| {@link | TreeNode} fromNode |
+| {@link | TreeNode} toNode |
+
 <a name="Tree+export"></a>
 ### tree.export(criteria) ⇒ <code>object</code>
 Exports the tree data in format specified. It maintains herirachy by adding

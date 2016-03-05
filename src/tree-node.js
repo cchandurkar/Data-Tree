@@ -147,6 +147,56 @@ module.exports = (function(){
   };
 
   /**
+   * Finds distance of node from root node
+   *
+   * @method distanceToRoot
+   * @memberof TreeNode
+   * @instance
+   * @return {array} - array of instances of {@link TreeNode}
+   */
+  TreeNode.prototype.distanceToRoot = function(){
+
+    // Initialize Distance and Node
+    var distance = 0,
+        node = this;
+
+    // Loop Over Ancestors
+    while(node.parentNode()){
+      distance++;
+      node = node.parentNode();
+    }
+
+    // Return
+    return distance;
+
+  };
+
+  /**
+   * Gets an array of all ancestor nodes
+   *
+   * @method getAncestry
+   * @memberof TreeNode
+   * @instance
+   * @return {Array} - array of ancestor nodes
+   */
+  TreeNode.prototype.getAncestry = function(){
+
+    // Initialize empty array and node
+    var ancestors = [],
+        node = this;
+
+    // Loop over ancestors and add them in array
+    while(node.parentNode()){
+      ancestors.push(node.parentNode());
+      node = node.parentNode();
+    }
+
+    // Return
+    return ancestors;
+
+  };
+
+  /**
    * Exports the node data in format specified. It maintains herirachy by adding
    * additional "children" property to returned value of `criteria` callback.
    *

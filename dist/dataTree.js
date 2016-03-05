@@ -283,7 +283,7 @@ module.exports = (function(){
    * @return {number} - depth of node
    */
   TreeNode.prototype.depth = function(){
-    return this._data;
+    return this._depth;
   };
 
   // ------------------------------------
@@ -319,6 +319,56 @@ module.exports = (function(){
     return !this._parentNode ? [] : this._parentNode._childNodes.filter(function(_child){
       return _child !== thiss;
     });
+  };
+
+  /**
+   * Finds distance of node from root node
+   *
+   * @method distanceToRoot
+   * @memberof TreeNode
+   * @instance
+   * @return {array} - array of instances of {@link TreeNode}
+   */
+  TreeNode.prototype.distanceToRoot = function(){
+
+    // Initialize Distance and Node
+    var distance = 0,
+        node = this;
+
+    // Loop Over Ancestors
+    while(node.parentNode()){
+      distance++;
+      node = node.parentNode();
+    }
+
+    // Return
+    return distance;
+
+  };
+
+  /**
+   * Gets an array of all ancestor nodes
+   *
+   * @method getAncestry
+   * @memberof TreeNode
+   * @instance
+   * @return {Array} - array of ancestor nodes
+   */
+  TreeNode.prototype.getAncestry = function(){
+
+    // Initialize empty array and node
+    var ancestors = [],
+        node = this;
+
+    // Loop over ancestors and add them in array
+    while(node.parentNode()){
+      ancestors.push(node.parentNode());
+      node = node.parentNode();
+    }
+
+    // Return
+    return ancestors;
+
   };
 
   /**
@@ -695,6 +745,50 @@ module.exports = (function(){
     node._childNodes.push(newNode);
     this._currentNode = newNode;
     return newNode;
+  };
+
+  /**
+   * Finds a distance between two nodes
+   *
+   * @method distanceBetween
+   * @memberof Tree
+   * @instance
+   * @param {@link TreeNode} fromNode -  Node from which distance is to be calculated
+   * @param {@link TreeNode} toNode - Node to which distance is to be calculated
+   * @return {Number} - distance(number of hops) between two nodes.
+   */
+  Tree.prototype.distanceBetween = function(fromNode, toNode){
+    return fromNode.distanceToRoot() + toNode.distanceToRoot() - 2 *  this.findCommonParent(fromNode, toNode).distanceToRoot();
+  };
+
+  /**
+   * Finds a common parent between nodes
+   *
+   * @method findCommonParent
+   * @memberof Tree
+   * @instance
+   * @param {@link TreeNode} fromNode
+   * @param {@link TreeNode} toNode
+   * @return {@link TreeNode} - common parent
+   */
+  Tree.prototype.findCommonParent = function(fromNode, toNode){
+
+    // Get ancestory of both nodes
+    var fromNodeAncestors = fromNode.getAncestry();
+    var toNodeAncestors = toNode.getAncestry();
+
+    // Find Commont
+    var common = null;
+    fromNodeAncestors.some(function(ancestor){
+      if(toNodeAncestors.indexOf(ancestor) !== -1){
+        common = ancestor;
+        return true;
+      }
+    });
+
+    // Return Common
+    return common;
+
   };
 
   /**

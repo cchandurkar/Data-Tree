@@ -14,10 +14,6 @@ echo "Travis Branch: $TRAVIS_BRANCH";
 rm -rf tempGHPages
 mkdir tempGHPages
 
-# Copy Files
-cp -r ./docs ./tempGHPages
-cp -a ./dist/. ./tempGHPages
-
 # Init
 cd tempGHPages
 git init
@@ -25,6 +21,14 @@ git init
 # config
 git config --global user.email "cchandurkar@gmail.com"
 git config --global user.name "cchandurkar"
+
+# checkout
+git checkout -b gh-pages
+git pull master:gh-pages
+
+# Copy Files
+cp -r ./docs ./tempGHPages
+cp -a ./dist/. ./tempGHPages
 
 # deploy
 git add --all

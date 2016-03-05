@@ -37,7 +37,7 @@ git add --all
 git commit -m "Travis Build $TRAVIS_BUILD_NUMBER for gh-pages"
 echo "Pushing https://${GITHUB_TOKEN}@${GITHUB_REF}.git";
 
-git push --force --quite origin gh-pages > /dev/null 2>&1
+git push -fq origin gh-pages > /dev/null 2>&1
 
 # Remove tempGHPages directory
 rm -rf gh-pages

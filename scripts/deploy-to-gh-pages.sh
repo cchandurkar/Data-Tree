@@ -10,8 +10,8 @@ git branch -a
 
 echo "Travis Branch: $TRAVIS_BRANCH";
 echo "Travis TAG: $TRAVIS_BRANCH";
-echo "gitHUbTOken $GITHUB_TOKEN"
-echo "gitHUbTOken $GITHUB_REPO"
+echo "gitHUbTOken $GITHUB_TOKEN";
+echo "gitHUbTOken $GITHUB_REPO";
 
 # Remove and Recreate tempGHPages directory
 rm -rf tempGHPages
@@ -40,8 +40,9 @@ echo "Commiting";
 git commit -m "Updating Docs"
 
 echo "Pushing";
+echo "https://${GITHUB_TOKEN}@$github.com/${GITHUB_REF}.git";
 
-git push --force "https://${GITHUB_TOKEN}@$github.com/${GITHUB_REPO}.git" master:gh-pages > /dev/null 2>&1
+git push --force "https://${GITHUB_TOKEN}@${GITHUB_REF}" master:gh-pages > /dev/null 2>&1
 
 # Remove tempGHPages directory
 rm -rf tempGHPages

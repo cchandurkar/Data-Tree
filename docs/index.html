@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#currentNode">currentNode</a></li><li data-type='method'><a href="Tree.html#distanceBetween">distanceBetween</a></li><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#findCommonParent">findCommonParent</a></li><li data-type='method'><a href="Tree.html#import">import</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#isEmpty">isEmpty</a></li><li data-type='method'><a href="Tree.html#pruneAllNodes">pruneAllNodes</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#rootNode">rootNode</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li><li data-type='method'><a href="Tree.html#trimBranchFrom">trimBranchFrom</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#childNodes">childNodes</a></li><li data-type='method'><a href="TreeNode.html#data">data</a></li><li data-type='method'><a href="TreeNode.html#depth">depth</a></li><li data-type='method'><a href="TreeNode.html#distanceToRoot">distanceToRoot</a></li><li data-type='method'><a href="TreeNode.html#export">export</a></li><li data-type='method'><a href="TreeNode.html#getAncestry">getAncestry</a></li><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li><li data-type='method'><a href="TreeNode.html#parentNode">parentNode</a></li><li data-type='method'><a href="TreeNode.html#siblings">siblings</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><p><a href="https://travis-ci.org/cchandurkar/Data-Tree"><img src="https://travis-ci.org/cchandurkar/Data-Tree.svg?branch=master" alt="Build Status"></a>
+<a href="https://badge.fury.io/js/data-tree"><img src="https://badge.fury.io/js/data-tree.svg" alt="npm version"></a>
+<a href="https://david-dm.org/cchandurkar/data-tree"><img src="https://david-dm.org/cchandurkar/data-tree.svg" alt="Dependency Status"></a>
+<a href="https://david-dm.org/cchandurkar/data-tree#info=devDependencies"><img src="https://david-dm.org/cchandurkar/data-tree/dev-status.svg" alt="devDependency Status"></a>
+<a href="https://gitter.im/cchandurkar/Data-Tree?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/cchandurkar/Data-Tree.svg" alt="Gitter"></a></p>
+<h1>Data Tree</h1><p>Data oriented tree structure that unleashes the power of callbacks to create, search and traverse tree. Data tree keeps the track of current node which updates upon insertion and deletion of the node from tree.</p>
+<p><img height="120" width="120" src="http://cchandurkar.github.io/data-tree/icon/icon.png"/></p>
+<h2>Install:</h2><p><code>$ npm install data-tree</code><br /><br />
+Then use via <code>require('data-tree')</code> <strong>OR</strong> use browserified builds from <code>dist/dataTree.js</code> <strong>OR</strong> <code>dist/dataTree.min.js</code> in <code>&lt;script /&gt;</code> tag. Browserified builds available at <a href="http://cchandurkar.github.io/data-tree/dataTree.js">dataTree.js</a> and <a href="http://cchandurkar.github.io/data-tree/dataTree.min.js">dataTree.min.js</a> can be used in <code>&lt;script/&gt;</code> directly.</p>
+<h2>Examples:</h2><p>Following examples will guide you about how to create tree, insert/remove nodes and search/traverse a tree. Don't forget to checkout <a href="http://cchandurkar.github.io/data-tree/">Data-Tree reference</a>.</p>
+<h3>Create tree</h3><p><code>dataTree</code> is global variable that can be used to create a tree in following way.</p>
+<pre class="prettyprint source lang-javascript"><code>  var tree = dataTree.create();</code></pre><h3>Insert data</h3><pre class="prettyprint source lang-javascript"><code>// Insert single value
+tree.insert(183);
+
+// Insert array of values
+// NOTE: This does not create 3 different nodes. It considers an array as a whole data and puts in a single node.
+tree.insert([34, 565, 78]);
+
+// Insert Objects
+tree.insert({
+  key: '#berries',
+  value: { name: 'Apple', color: 'Red'}
+});</code></pre><h3>Create and append node to a parent node that satisfies the given criteria</h3><pre class="prettyprint source lang-javascript"><code>// Insert data
+tree.insert({
+  key: '#apple',
+  value: { name: 'Apple', color: 'Red'}
+});
+
+// New Data
+var greenApple = {
+  key: '#greenapple',
+  value: { name: 'Green Apple', color: 'Green' }
+};
+
+// Insert data to node which has `key` = #apple
+tree.insertTo(function(data){
+  return data.key === '#apple'
+}, greenApple);</code></pre><h3>Create and append node using parent node's instance</h3><pre class="prettyprint source lang-javascript"><code>// Insert data
+var node = tree.insert({
+  key: '#apple',
+  value: { name: 'Apple', color: 'Red'}
+});
+
+// New Data
+var greenApple = {
+ key: '#greenapple',
+ value: { name: 'Green Apple', color: 'Green' }
+};
+
+// Insert data to node
+// This will create a new node with given data and append to parent node provided
+tree.insertToNode(node, greenApple);</code></pre><h3>Remove Node</h3><pre class="prettyprint source lang-javascript"><code>// Insert Node
+var node = tree.insert({
+  key: '#apple',
+  value: { name: 'Apple', color: 'Red'}
+});
+
+// Remove it
+tree.remove(node);</code></pre><h3>Search BFS</h3><pre class="prettyprint source lang-javascript"><code>var node = tree.traverser().searchBFS(function(data){
+  return data.key === '#apple';
+});</code></pre><h3>Search DFS</h3><pre class="prettyprint source lang-javascript"><code>var node = tree.traverser().searchDFS(function(data){
+  return data.key === '#apple';
+});</code></pre><h3>Traverse BFS</h3><pre class="prettyprint source lang-javascript"><code>tree.traverser().traverseBFS(function(node){
+  console.log(node.data());
+});</code></pre><h4>Traverse DFS</h4><pre class="prettyprint source lang-javascript"><code>tree.traverser().traverseDFS(function(node){
+  console.log(node.data());
+});</code></pre><h2>Develop</h2><ol>
+<li>Clone this repositoy and <code>cd</code> into it</li>
+<li><code>npm install</code></li>
+<li><code>grunt build</code> to build browserify files <strong>OR</strong> <code>grunt watch</code> to build automatically upon file change.</li>
+</ol></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Mar 05 2016 22:55:05 GMT+0000 (UTC) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

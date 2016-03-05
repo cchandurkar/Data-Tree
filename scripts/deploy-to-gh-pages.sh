@@ -32,7 +32,13 @@ echo "Deploying to gh-pages";
 
 # deploy
 git add --all
+
+echo "Commiting";
+
 git commit -m "Updating Docs"
+
+echo "Pushing";
+
 git push --force "https://${GITHUB_TOKEN}@$github.com/${GITHUB_REPO}.git" master:gh-pages > /dev/null 2>&1
 
 # Remove tempGHPages directory

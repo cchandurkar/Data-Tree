@@ -3,7 +3,7 @@
 set -o errexit
 
 # build (CHANGE THIS)
-grunt build
+npm run build
 
 # Only Push to gh-pages if master
 if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "master" ]; then exit 0; fi
@@ -19,6 +19,9 @@ cp -a ./dist/. ./tempGHPages
 # config
 git config --global user.email "cchandurkar@gmail.com"
 git config --global user.name "cchandurkar"
+
+# Echo
+echo "Deploying to gh-pages";
 
 # deploy
 cd tempGHPages

@@ -74,5 +74,6 @@ module.exports = function(grunt) {
   // Default task(s).
   grunt.registerTask('build', ['jshint', 'browserify', 'uglify:min', 'jsdoc2md', 'jsdoc']);
   grunt.registerTask('default', ['build']);
+  grunt.registerTask('dev-server', ['build', 'watch']);
 
 };

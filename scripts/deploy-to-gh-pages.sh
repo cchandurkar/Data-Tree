@@ -14,6 +14,10 @@ echo "Travis Branch: $TRAVIS_BRANCH";
 rm -rf tempGHPages
 mkdir tempGHPages
 
+# Copy Files
+cp -r ./docs ./tempGHPages
+cp -a ./dist/. ./tempGHPages
+
 # Init
 cd tempGHPages
 git init
@@ -22,20 +26,12 @@ git init
 git config --global user.email "cchandurkar@gmail.com"
 git config --global user.name "cchandurkar"
 
-# checkout
-git checkout -b gh-pages
-git pull master:gh-pages
-
-# Copy Files
-cp -r ./docs ./tempGHPages
-cp -a ./dist/. ./tempGHPages
-
 # deploy
 git add --all
 git commit -m "Updating Docs"
 echo "Pushing https://${GITHUB_TOKEN}@${GITHUB_REF}.git";
 
-git push "https://${GITHUB_TOKEN}@${GITHUB_REF}.git" master:gh-pages > /dev/null 2>&1
+git push --force "https://${GITHUB_TOKEN}@${GITHUB_REF}.git" master:gh-pages > /dev/null 2>&1
 
 # Remove tempGHPages directory
 rm -rf tempGHPages

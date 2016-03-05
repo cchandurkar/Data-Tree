@@ -1,12 +1,11 @@
 language: node_js
-sudo: false
 node_js:
   - '0.12'
 
 script:
-  - bash ./scripts/deploy-to-gh-pages.sh 
+  - bash ./scripts/deploy-to-gh-pages.sh
 
 env:
-global:
-  - GITHUB_REPO: "cchandurkar/Data-Tree"
-  - secure: "jUBcM+oW3jPzEFLbrTVnzl9Z9MPb4kFigBtQ8gsq/qlR4c2lBzOICqfdY7fW4Rw9d0NvvQSsf1slMBSV7y3Ylt2O5OtkVbQDj09b9x9CJ7eQnWqwX9JBxpNFYjlWxtM/Byabd42EfyiR16s7Fu9+f9H67u5ckAVCJ9OfosKH71+KA4sWBYuMLmtboXZfgqRqJsmcR1+GX1XIbYbUgoOfeX7Ys7JMzYEJxVQV0ZsBLobTH9+X0kn3NSwG11HzcEWojVx2EuiWF7Waogg+ZCX3ehXo2ElJhefhnrQLVpWCnMvIBwxWFrInaBvSJfHfoje4d2aDvYbjyP6s0UQHX2MJ11PukvVrN6VWhSvST1rBPSOCqWEKDfFurRtKrkuIPCdQHHT6dmCCT9Ml6PRLYMZKeE3Gohi64yPTjwn/vyTw7rq3Buq+durv+CCmPaF9yMckTgOL0fg8L71YZvqUT4qPhQZLBBcExipjkhn4AHsfm4FeWnEnWCrwKssY4IRrQbIMCdlaVYWuANktdK5YuSVh/0+pVFoG8mh55hXosOPcDyibTtJDxETExR4x/2821saxNpCswWx+RTik9toqvfyf1p6j0oL2XhzvOJ7RlkehMaSvli/nFOwnB1As9zchVHYtEVJhfqV+FYJ19260TPyOMZ+6lfkbYSJCUVDXobuMbPI="  # <-- from travis-encrypt
+  global:
+  - GITHUB_REF: github.com/cchandurkar/Data-Tree
+  - secure: "Q9AnvGFakerALn/fGoZI34K3xEaGaIFoQapX1w37+HSX53yN3YoCwJpdamkDgj6gyVtk9UQmAMPvhCshTpYhDVH4XNVim7m3G+ORWTkcUz/OYUiZtM3NkPAPjtJuvwNKJKCkwtAyLgOiikCVdtK2poQWfcHhRvxaUKRj0XDTIZR6YQQrGYMJUXnopOzoTGkevp3Gli3FZIQrPelSQ3c6Wt0j5ZO4oC6FIAgpRcn6VWruhn8olXZj/JeweSk6kxUPkL5dxPB69FgHDeabhJ88xMm18iVfkVQpyh8IN+yc1HiMEZNwAj6y6wCzeglMZo58GtysEiD0Pw1JHdummaAC1uKzI6CDHrmA6jno1eOGknmOyUG19+LrmkyjuF7v81qo8A6zVjgwFoY4lr9/y5CRmzGoCxtymslQGLG58YqrkWHtBHlYeNrEizQ7ACW8tJp2tPXUwrSWlYgKJCmk1sRFsqqdFWWjGrCG74TH+T4+G0n9RbdFWctxO4PIvl/CpaE/wCGrBtDsyhBCQxXu4Te05SoXRLsYexwY25E/LwdzMJ/PIgDV8EYPefSxftbsajxyvvOSlzxSwOBRslwcwwpQfTle2x1Eolr9riZ0EopBh6pkhZHZqcmseA7z2Z2dVUetmnhzjfVEqy3S70TFC2uzODLR8B+OjULAK7ixVMyo9CE="  # <-- from travis-encrypt

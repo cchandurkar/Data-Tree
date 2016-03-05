@@ -8,10 +8,8 @@ npm run build
 # Check Branch
 git branch -a
 
-echo $TRAVIS_BRANCH;
-
-# Only Push to gh-pages if master
-if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "master" ]; then exit 0; fi
+echo "Travis Branch: $TRAVIS_BRANCH";
+echo "Travis TAG: $TRAVIS_BRANCH";
 
 # Remove and Recreate tempGHPages directory
 rm -rf tempGHPages
@@ -21,6 +19,10 @@ mkdir tempGHPages
 cp -r ./docs ./tempGHPages
 cp -a ./dist/. ./tempGHPages
 
+# Init
+cd tempGHPages
+git init
+
 # config
 git config --global user.email "cchandurkar@gmail.com"
 git config --global user.name "cchandurkar"
@@ -29,8 +31,6 @@ git config --global user.name "cchandurkar"
 echo "Deploying to gh-pages";
 
 # deploy
-cd tempGHPages
-git init
 git add --all
 git commit -m "Updating Docs"
 git push --force "https://${GITHUB_TOKEN}@$github.com/${GITHUB_REPO}.git" master:gh-pages > /dev/null 2>&1

@@ -5,13 +5,10 @@ set -o errexit
 # build (CHANGE THIS)
 npm run build
 
-# Check Branch
-git branch -a
-
 echo "Travis Branch: $TRAVIS_BRANCH";
-echo "Travis TAG: $TRAVIS_BRANCH";
-echo "gitHUbTOken $GITHUB_TOKEN";
-echo "gitHUbRef $GITHUB_REF";
+
+# Exit if branch is not master
+# if ["$TRAVIS_BRANCH" != "master" ]; then exit 0; fi
 
 # Remove and Recreate tempGHPages directory
 rm -rf tempGHPages
@@ -29,17 +26,13 @@ git init
 git config --global user.email "cchandurkar@gmail.com"
 git config --global user.name "cchandurkar"
 
-# Echo
-echo "Deploying to gh-pages";
+# Checkout gh-pages
+git checkout -b gh-pages
+git pull origin gh-pages
 
 # deploy
 git add --all
-
-echo "Commiting";
-
 git commit -m "Updating Docs"
-
-echo "Pushing";
 echo "https://${GITHUB_TOKEN}@$github.com/${GITHUB_REF}.git";
 
 git push --force "https://${GITHUB_TOKEN}@${GITHUB_REF}" master:gh-pages > /dev/null 2>&1

@@ -7,7 +7,8 @@
   "icon": "http://cchandurkar.github.io/data-tree/icon/icon.png",
   "scripts": {
     "test": "./node_modules/.bin/jasmine",
-    "build": "grunt build"
+    "build": "grunt build",
+    "dev-server": "grunt dev-server"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Data-tree by cchandurkar</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Data-tree</h1>
+        <p>Data oriented tree structure that unleashes the power of callbacks to create, search and traverse the tree.</p>
+
+        <p class="view"><a href="https://github.com/cchandurkar/Data-Tree">View the Project on GitHub <small>cchandurkar/Data-Tree</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/cchandurkar/Data-Tree/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/cchandurkar/Data-Tree/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/cchandurkar/Data-Tree">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install:</h2>
+
+<p><code>$ npm install data-tree</code><br><br>
+Then use via <code>require('data-tree')</code> <strong>OR</strong> use browserified builds from <code>dist/dataTree.js</code> <strong>OR</strong> <code>dist/dataTree.min.js</code> in <code>&lt;script /&gt;</code> tag. Browserified builds available at <a href="http://cchandurkar.github.io/data-tree/dataTree.js">dataTree.js</a> and <a href="http://cchandurkar.github.io/data-tree/dataTree.min.js">dataTree.min.js</a> can be used in <code>&lt;script/&gt;</code> directly.</p>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples:</h2>
+
+<p>Following examples will guide you about how to create tree, insert/remove nodes and search/traverse a tree. Don't forget to checkout <a href="http://cchandurkar.github.io/data-tree/">Data-Tree reference</a>.</p>
+
+<h3>
+<a id="create-tree" class="anchor" href="#create-tree" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create tree</h3>
+
+<p><code>dataTree</code> is global variable that can be used to create a tree in following way.</p>
+
+<div class="highlight highlight-source-js"><pre>  <span class="pl-k">var</span> tree <span class="pl-k">=</span> <span class="pl-smi">dataTree</span>.<span class="pl-en">create</span>();</pre></div>
+
+<h3>
+<a id="insert-data" class="anchor" href="#insert-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Insert data</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Insert single value</span>
+<span class="pl-smi">tree</span>.<span class="pl-en">insert</span>(<span class="pl-c1">183</span>);
+
+<span class="pl-c">// Insert array of values</span>
+<span class="pl-c">// NOTE: This does not create 3 different nodes. It considers an array as a whole data and puts in a single node.</span>
+<span class="pl-smi">tree</span>.<span class="pl-en">insert</span>([<span class="pl-c1">34</span>, <span class="pl-c1">565</span>, <span class="pl-c1">78</span>]);
+
+<span class="pl-c">// Insert Objects</span>
+<span class="pl-smi">tree</span>.<span class="pl-en">insert</span>({
+  key<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#berries<span class="pl-pds">'</span></span>,
+  value<span class="pl-k">:</span> { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Apple<span class="pl-pds">'</span></span>, color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Red<span class="pl-pds">'</span></span>}
+});</pre></div>
+
+<h3>
+<a id="create-and-append-node-to-a-parent-node-that-satisfies-the-given-criteria" class="anchor" href="#create-and-append-node-to-a-parent-node-that-satisfies-the-given-criteria" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create and append node to a parent node that satisfies the given criteria</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Insert data</span>
+<span class="pl-smi">tree</span>.<span class="pl-en">insert</span>({
+  key<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#apple<span class="pl-pds">'</span></span>,
+  value<span class="pl-k">:</span> { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Apple<span class="pl-pds">'</span></span>, color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Red<span class="pl-pds">'</span></span>}
+});
+
+<span class="pl-c">// New Data</span>
+<span class="pl-k">var</span> greenApple <span class="pl-k">=</span> {
+  key<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#greenapple<span class="pl-pds">'</span></span>,
+  value<span class="pl-k">:</span> { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Green Apple<span class="pl-pds">'</span></span>, color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Green<span class="pl-pds">'</span></span> }
+};
+
+<span class="pl-c">// Insert data to node which has `key` = #apple</span>
+<span class="pl-smi">tree</span>.<span class="pl-en">insertTo</span>(<span class="pl-k">function</span>(<span class="pl-smi">data</span>){
+  <span class="pl-k">return</span> <span class="pl-smi">data</span>.<span class="pl-smi">key</span> <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">'</span>#apple<span class="pl-pds">'</span></span>
+}, greenApple);</pre></div>
+
+<h3>
+<a id="create-and-append-node-using-parent-nodes-instance" class="anchor" href="#create-and-append-node-using-parent-nodes-instance" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create and append node using parent node's instance</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Insert data</span>
+<span class="pl-k">var</span> node <span class="pl-k">=</span> <span class="pl-smi">tree</span>.<span class="pl-en">insert</span>({
+  key<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#apple<span class="pl-pds">'</span></span>,
+  value<span class="pl-k">:</span> { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Apple<span class="pl-pds">'</span></span>, color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Red<span class="pl-pds">'</span></span>}
+});
+
+<span class="pl-c">// New Data</span>
+<span class="pl-k">var</span> greenApple <span class="pl-k">=</span> {
+ key<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#greenapple<span class="pl-pds">'</span></span>,
+ value<span class="pl-k">:</span> { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Green Apple<span class="pl-pds">'</span></span>, color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Green<span class="pl-pds">'</span></span> }
+};
+
+<span class="pl-c">// Insert data to node</span>
+<span class="pl-c">// This will create a new node with given data and append to parent node provided</span>
+<span class="pl-smi">tree</span>.<span class="pl-en">insertToNode</span>(node, greenApple);</pre></div>
+
+<h3>
+<a id="remove-node" class="anchor" href="#remove-node" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Remove Node</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Insert Node</span>
+<span class="pl-k">var</span> node <span class="pl-k">=</span> <span class="pl-smi">tree</span>.<span class="pl-en">insert</span>({
+  key<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#apple<span class="pl-pds">'</span></span>,
+  value<span class="pl-k">:</span> { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Apple<span class="pl-pds">'</span></span>, color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Red<span class="pl-pds">'</span></span>}
+});
+
+<span class="pl-c">// Remove it</span>
+<span class="pl-smi">tree</span>.<span class="pl-en">remove</span>(node);</pre></div>
+
+<h3>
+<a id="search-bfs" class="anchor" href="#search-bfs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Search BFS</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> node <span class="pl-k">=</span> <span class="pl-smi">tree</span>.<span class="pl-en">traverser</span>().<span class="pl-en">searchBFS</span>(<span class="pl-k">function</span>(<span class="pl-smi">data</span>){
+  <span class="pl-k">return</span> <span class="pl-smi">data</span>.<span class="pl-smi">key</span> <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">'</span>#apple<span class="pl-pds">'</span></span>;
+});</pre></div>
+
+<h3>
+<a id="search-dfs" class="anchor" href="#search-dfs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Search DFS</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> node <span class="pl-k">=</span> <span class="pl-smi">tree</span>.<span class="pl-en">traverser</span>().<span class="pl-en">searchDFS</span>(<span class="pl-k">function</span>(<span class="pl-smi">data</span>){
+  <span class="pl-k">return</span> <span class="pl-smi">data</span>.<span class="pl-smi">key</span> <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">'</span>#apple<span class="pl-pds">'</span></span>;
+});</pre></div>
+
+<h3>
+<a id="traverse-bfs" class="anchor" href="#traverse-bfs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Traverse BFS</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">tree</span>.<span class="pl-en">traverser</span>().<span class="pl-en">traverseBFS</span>(<span class="pl-k">function</span>(<span class="pl-smi">node</span>){
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">node</span>.<span class="pl-c1">data</span>());
+});</pre></div>
+
+<h4>
+<a id="traverse-dfs" class="anchor" href="#traverse-dfs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Traverse DFS</h4>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">tree</span>.<span class="pl-en">traverser</span>().<span class="pl-en">traverseDFS</span>(<span class="pl-k">function</span>(<span class="pl-smi">node</span>){
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">node</span>.<span class="pl-c1">data</span>());
+});</pre></div>
+
+<h2>
+<a id="develop" class="anchor" href="#develop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Develop</h2>
+
+<ol>
+<li>Clone this repositoy and <code>cd</code> into it</li>
+<li><code>npm install</code></li>
+<li>
+<code>grunt build</code> to build browserify files <strong>OR</strong> <code>grunt watch</code> to build automatically upon file change.</li>
+</ol>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/cchandurkar">cchandurkar</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

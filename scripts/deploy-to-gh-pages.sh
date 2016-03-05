@@ -29,9 +29,9 @@ git config --global user.name "cchandurkar"
 # deploy
 git add --all
 git commit -m "Updating Docs"
-echo "https://${GITHUB_TOKEN}@$github.com/${GITHUB_REF}.git";
+echo "Pushing https://${GITHUB_TOKEN}@${GITHUB_REF}.git";
 
-git push "https://${GITHUB_TOKEN}@${GITHUB_REF}" master:gh-pages > /dev/null 2>&1
+git push "https://${GITHUB_TOKEN}@${GITHUB_REF}.git" master:gh-pages > /dev/null 2>&1
 
 # Remove tempGHPages directory
 rm -rf tempGHPages

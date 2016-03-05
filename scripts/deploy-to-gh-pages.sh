@@ -11,7 +11,7 @@ git branch -a
 echo "Travis Branch: $TRAVIS_BRANCH";
 echo "Travis TAG: $TRAVIS_BRANCH";
 echo "gitHUbTOken $GITHUB_TOKEN";
-echo "gitHUbTOken $GITHUB_REPO";
+echo "gitHUbRef $GITHUB_REF";
 
 # Remove and Recreate tempGHPages directory
 rm -rf tempGHPages

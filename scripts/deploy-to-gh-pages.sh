@@ -2,36 +2,42 @@
 # See https://medium.com/@nthgergo/publishing-gh-pages-with-travis-ci-53a8270e87db
 set -o errexit
 
+# only proceed script when started not by pull request (PR)
+if [ $TRAVIS_PULL_REQUEST == "true" ]; then
+  echo "this is PR, exiting"
+  exit 0
+fi
+
 # build (CHANGE THIS)
 npm run build
 
-echo "Travis Branch: $TRAVIS_BRANCH";
-
 # Exit if branch is not master
 # if ["$TRAVIS_BRANCH" != "master" ]; then exit 0; fi
-
-# Remove and Recreate tempGHPages directory
-rm -rf tempGHPages
-mkdir tempGHPages
-
-# Copy Files
-cp -r ./docs ./tempGHPages
-cp -a ./dist/. ./tempGHPages
-
-# Init
-cd tempGHPages
-git init
 
 # config
 git config --global user.email "cchandurkar@gmail.com"
 git config --global user.name "cchandurkar"
 
+#using token clone gh-pages branch
+git clone --quiet --branch=gh-pages "https://${GITHUB_TOKEN}@${GITHUB_REF}.git"  gh-pages > /dev/null
+
+#cd into gh-pages
+echo "Listing: ";
+ls
+
+# Copy Files
+cp -r ./docs ./gh-pages
+cp -a ./dist/. ./gh-pages
+
+# Init
+cd gh-pages
+
 # deploy
 git add --all
-git commit -m "Updating Docs"
+git commit -m "Travis Build $TRAVIS_BUILD_NUMBER for gh-pages"
 echo "Pushing https://${GITHUB_TOKEN}@${GITHUB_REF}.git";
 
-git push --force "https://${GITHUB_TOKEN}@${GITHUB_REF}.git" master:gh-pages > /dev/null 2>&1
+git push --force --quite origin gh-pages > /dev/null 2>&1
 
 # Remove tempGHPages directory
-rm -rf tempGHPages
+rm -rf gh-pages

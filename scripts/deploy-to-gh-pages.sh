@@ -5,6 +5,11 @@ set -o errexit
 # build (CHANGE THIS)
 npm run build
 
+# Check Branch
+git branch -a
+
+echo $TRAVIS_BRANCH;
+
 # Only Push to gh-pages if master
 if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "master" ]; then exit 0; fi
 

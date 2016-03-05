@@ -26,16 +26,12 @@ git init
 git config --global user.email "cchandurkar@gmail.com"
 git config --global user.name "cchandurkar"
 
-# Checkout gh-pages
-git checkout -b gh-pages
-git pull origin gh-pages
-
 # deploy
 git add --all
 git commit -m "Updating Docs"
 echo "https://${GITHUB_TOKEN}@$github.com/${GITHUB_REF}.git";
 
-git push --force "https://${GITHUB_TOKEN}@${GITHUB_REF}" master:gh-pages > /dev/null 2>&1
+git push "https://${GITHUB_TOKEN}@${GITHUB_REF}" master:gh-pages > /dev/null 2>&1
 
 # Remove tempGHPages directory
 rm -rf tempGHPages

@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#currentNode">currentNode</a></li><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#import">import</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#isEmpty">isEmpty</a></li><li data-type='method'><a href="Tree.html#pruneAllNodes">pruneAllNodes</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#rootNode">rootNode</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li><li data-type='method'><a href="Tree.html#trimBranchFrom">trimBranchFrom</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#childNodes">childNodes</a></li><li data-type='method'><a href="TreeNode.html#data">data</a></li><li data-type='method'><a href="TreeNode.html#depth">depth</a></li><li data-type='method'><a href="TreeNode.html#export">export</a></li><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li><li data-type='method'><a href="TreeNode.html#parentNode">parentNode</a></li><li data-type='method'><a href="TreeNode.html#siblings">siblings</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Traverser.html">Traverser</a><ul class='methods'><li data-type='method'><a href="Traverser.html#searchBFS">searchBFS</a></li><li data-type='method'><a href="Traverser.html#searchDFS">searchDFS</a></li><li data-type='method'><a href="Traverser.html#traverseBFS">traverseBFS</a></li><li data-type='method'><a href="Traverser.html#traverseDFS">traverseDFS</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#currentNode">currentNode</a></li><li data-type='method'><a href="Tree.html#distanceBetween">distanceBetween</a></li><li data-type='method'><a href="Tree.html#export">export</a></li><li data-type='method'><a href="Tree.html#findCommonParent">findCommonParent</a></li><li data-type='method'><a href="Tree.html#import">import</a></li><li data-type='method'><a href="Tree.html#insert">insert</a></li><li data-type='method'><a href="Tree.html#insertTo">insertTo</a></li><li data-type='method'><a href="Tree.html#insertToNode">insertToNode</a></li><li data-type='method'><a href="Tree.html#isEmpty">isEmpty</a></li><li data-type='method'><a href="Tree.html#pruneAllNodes">pruneAllNodes</a></li><li data-type='method'><a href="Tree.html#remove">remove</a></li><li data-type='method'><a href="Tree.html#rootNode">rootNode</a></li><li data-type='method'><a href="Tree.html#traverser">traverser</a></li><li data-type='method'><a href="Tree.html#trimBranchFrom">trimBranchFrom</a></li></ul></li><li><a href="TreeNode.html">TreeNode</a><ul class='methods'><li data-type='method'><a href="TreeNode.html#childNodes">childNodes</a></li><li data-type='method'><a href="TreeNode.html#data">data</a></li><li data-type='method'><a href="TreeNode.html#depth">depth</a></li><li data-type='method'><a href="TreeNode.html#distanceToRoot">distanceToRoot</a></li><li data-type='method'><a href="TreeNode.html#export">export</a></li><li data-type='method'><a href="TreeNode.html#getAncestry">getAncestry</a></li><li data-type='method'><a href="TreeNode.html#matchCriteria">matchCriteria</a></li><li data-type='method'><a href="TreeNode.html#parentNode">parentNode</a></li><li data-type='method'><a href="TreeNode.html#siblings">siblings</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <div id="main">
@@ -333,6 +333,50 @@ module.exports = (function(){
   };
 
   /**
+   * Finds a distance between two nodes
+   *
+   * @method distanceBetween
+   * @memberof Tree
+   * @instance
+   * @param {@link TreeNode} fromNode -  Node from which distance is to be calculated
+   * @param {@link TreeNode} toNode - Node to which distance is to be calculated
+   * @return {Number} - distance(number of hops) between two nodes.
+   */
+  Tree.prototype.distanceBetween = function(fromNode, toNode){
+    return fromNode.distanceToRoot() + toNode.distanceToRoot() - 2 *  this.findCommonParent(fromNode, toNode).distanceToRoot();
+  };
+
+  /**
+   * Finds a common parent between nodes
+   *
+   * @method findCommonParent
+   * @memberof Tree
+   * @instance
+   * @param {@link TreeNode} fromNode
+   * @param {@link TreeNode} toNode
+   * @return {@link TreeNode} - common parent
+   */
+  Tree.prototype.findCommonParent = function(fromNode, toNode){
+
+    // Get ancestory of both nodes
+    var fromNodeAncestors = fromNode.getAncestry();
+    var toNodeAncestors = toNode.getAncestry();
+
+    // Find Commont
+    var common = null;
+    fromNodeAncestors.some(function(ancestor){
+      if(toNodeAncestors.indexOf(ancestor) !== -1){
+        common = ancestor;
+        return true;
+      }
+    });
+
+    // Return Common
+    return common;
+
+  };
+
+  /**
    * Exports the tree data in format specified. It maintains herirachy by adding
    * additional "children" property to returned value of `criteria` callback.
    *
@@ -507,7 +551,7 @@ module.exports = (function(){
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Feb 10 2016 03:05:49 GMT-0500 (Eastern Standard Time) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Mar 05 2016 13:03:53 GMT-0500 (Eastern Standard Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -347,7 +347,7 @@ module.exports = (function(){
   };
 
   /**
-   * Gets an array of all ancestor nodes
+   * Gets an array of all ancestor nodes including current node
    *
    * @method getAncestry
    * @memberof TreeNode
@@ -357,7 +357,7 @@ module.exports = (function(){
   TreeNode.prototype.getAncestry = function(){
 
     // Initialize empty array and node
-    var ancestors = [],
+    var ancestors = [this],
         node = this;
 
     // Loop over ancestors and add them in array

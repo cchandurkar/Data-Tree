@@ -7,6 +7,7 @@ npm run build
 
 # Exit if branch is not master
 if [[ "$TRAVIS_BRANCH" == "master" ]]
+then
 
   # config
   git config --global user.email "cchandurkar@gmail.com"

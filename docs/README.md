@@ -193,7 +193,7 @@ Finds distance of node from root node
 **Returns**: <code>array</code> - - array of instances of [TreeNode](#TreeNode)  
 <a name="TreeNode+getAncestry"></a>
 ### treeNode.getAncestry() ⇒ <code>Array</code>
-Gets an array of all ancestor nodes
+Gets an array of all ancestor nodes including current node
 
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
 **Returns**: <code>Array</code> - - array of ancestor nodes  

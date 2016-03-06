@@ -14,7 +14,7 @@ Data oriented tree structure that unleashes the power of callbacks to create, se
 Then use via `require('data-tree')` **OR** use browserified build available at [dataTree.min.js](http://cchandurkar.github.io/Data-Tree/dataTree.min.js) can be used in `<script/>` directly.
 
 ## Examples:
-Following examples will guide you about how to create tree, insert/remove nodes and search/traverse a tree. Don't forget to checkout [Data-Tree reference](http://cchandurkar.github.io/Data-Dree/docs/).
+Following examples will guide you about how to create tree, insert/remove nodes and search/traverse a tree. Don't forget to checkout [Data-Tree reference](http://cchandurkar.github.io/Data-Tree/docs/).
 
 ### Create tree
 `dataTree` is global variable that can be used to create a tree in following way.

@@ -26,6 +26,7 @@
 </dl>
 
 <a name="Traverser"></a>
+
 ## Traverser
 Represents a traverser which searches/traverses the tree in BFS and DFS fashion.
 
@@ -39,6 +40,7 @@ Represents a traverser which searches/traverses the tree in BFS and DFS fashion.
     * [.traverseBFS(callback)](#Traverser+traverseBFS)
 
 <a name="new_Traverser_new"></a>
+
 ### new Traverser(tree)
 
 | Param | Description |
@@ -46,6 +48,7 @@ Represents a traverser which searches/traverses the tree in BFS and DFS fashion.
 | tree | [Tree](#Tree) that has to be traversed or search. |
 
 <a name="Traverser+searchDFS"></a>
+
 ### traverser.searchDFS(criteria) ⇒ <code>object</code>
 Searches a tree in DFS fashion. Requires a search criteria to be provided.
 
@@ -64,6 +67,7 @@ var node = tree.traverser().searchDFS(function(data){
 });
 ```
 <a name="Traverser+searchBFS"></a>
+
 ### traverser.searchBFS(criteria) ⇒ <code>object</code>
 Searches a tree in BFS fashion. Requires a search criteria to be provided.
 
@@ -82,6 +86,7 @@ var node = tree.traverser().searchBFS(function(data){
 });
 ```
 <a name="Traverser+traverseDFS"></a>
+
 ### traverser.traverseDFS(callback)
 Traverses an entire tree in DFS fashion.
 
@@ -99,6 +104,7 @@ tree.traverser().traverseDFS(function(node){
 });
 ```
 <a name="Traverser+traverseBFS"></a>
+
 ### traverser.traverseBFS(callback)
 Traverses an entire tree in BFS fashion.
 
@@ -116,6 +122,7 @@ tree.traverser().traverseBFS(function(node){
 });
 ```
 <a name="TreeNode"></a>
+
 ## TreeNode
 Represents a node in the tree.
 
@@ -134,6 +141,7 @@ Represents a node in the tree.
     * [.export(criteria)](#TreeNode+export) ⇒ <code>object</code>
 
 <a name="new_TreeNode_new"></a>
+
 ### new TreeNode(data)
 
 | Param | Type | Description |
@@ -141,18 +149,21 @@ Represents a node in the tree.
 | data | <code>object</code> | that is to be stored in a node |
 
 <a name="TreeNode+parentNode"></a>
+
 ### treeNode.parentNode() ⇒ <code>[TreeNode](#TreeNode)</code>
 Returns a parent node of current node
 
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
 **Returns**: <code>[TreeNode](#TreeNode)</code> - - parent of current node  
 <a name="TreeNode+childNodes"></a>
+
 ### treeNode.childNodes() ⇒ <code>array</code>
 Returns an array of child nodes
 
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
 **Returns**: <code>array</code> - - array of child nodes  
 <a name="TreeNode+data"></a>
+
 ### treeNode.data(_data) ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
 Sets or gets the data belonging to this node. Data is what user sets using `insert` and `insertTo` methods.
 
@@ -164,12 +175,14 @@ Sets or gets the data belonging to this node. Data is what user sets using `inse
 | _data | <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code> | data which is to be stored |
 
 <a name="TreeNode+depth"></a>
+
 ### treeNode.depth() ⇒ <code>number</code>
 Depth of the node. Indicates the level at which node lies in a tree.
 
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
 **Returns**: <code>number</code> - - depth of node  
 <a name="TreeNode+matchCriteria"></a>
+
 ### treeNode.matchCriteria(callback)
 Indicates whether this node matches the specified criteria. It triggers a callback criteria function that returns something.
 
@@ -180,24 +193,28 @@ Indicates whether this node matches the specified criteria. It triggers a callba
 | callback | <code>function</code> | Callback function that specifies some criteria. It receives [TreeNode#_data](TreeNode#_data) in parameter and expects different values in different scenarios. `matchCriteria` is used by following functions and expects: 1. [Tree#searchBFS](Tree#searchBFS) - {boolean} in return indicating whether given node satisfies criteria. 2. [Tree#searchDFS](Tree#searchDFS) - {boolean} in return indicating whether given node satisfies criteria. 3. [export](#Tree+export) - {object} in return indicating formatted data object. |
 
 <a name="TreeNode+siblings"></a>
+
 ### treeNode.siblings() ⇒ <code>array</code>
 get sibling nodes.
 
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
 **Returns**: <code>array</code> - - array of instances of [TreeNode](#TreeNode)  
 <a name="TreeNode+distanceToRoot"></a>
+
 ### treeNode.distanceToRoot() ⇒ <code>array</code>
 Finds distance of node from root node
 
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
 **Returns**: <code>array</code> - - array of instances of [TreeNode](#TreeNode)  
 <a name="TreeNode+getAncestry"></a>
+
 ### treeNode.getAncestry() ⇒ <code>Array</code>
 Gets an array of all ancestor nodes including current node
 
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
 **Returns**: <code>Array</code> - - array of ancestor nodes  
 <a name="TreeNode+export"></a>
+
 ### treeNode.export(criteria) ⇒ <code>object</code>
 Exports the node data in format specified. It maintains herirachy by adding
 additional "children" property to returned value of `criteria` callback.
@@ -247,6 +264,7 @@ var exported = rootNode.export(function(data){
 }
 ```
 <a name="Tree"></a>
+
 ## Tree
 Represents the tree in which data nodes can be inserted
 
@@ -266,39 +284,46 @@ Represents the tree in which data nodes can be inserted
     * [.distanceBetween({@link, {@link)](#Tree+distanceBetween) ⇒ <code>Number</code>
     * [.findCommonParent({@link, {@link)](#Tree+findCommonParent) ⇒
     * [.export(criteria)](#Tree+export) ⇒ <code>object</code>
+    * [.compress()](#Tree+compress)
     * [.import(data, childProperty, criteria)](#Tree+import) ⇒ <code>object</code>
 
 <a name="Tree+rootNode"></a>
+
 ### tree.rootNode() ⇒ <code>[TreeNode](#TreeNode)</code>
 Returns a root node of the tree.
 
 **Kind**: instance method of <code>[Tree](#Tree)</code>  
 **Returns**: <code>[TreeNode](#TreeNode)</code> - - root node of the tree.  
 <a name="Tree+currentNode"></a>
+
 ### tree.currentNode() ⇒ <code>[TreeNode](#TreeNode)</code>
 Returns a current node in a tree
 
 **Kind**: instance method of <code>[Tree](#Tree)</code>  
 **Returns**: <code>[TreeNode](#TreeNode)</code> - - current node of the tree.  
 <a name="Tree+traverser"></a>
+
 ### tree.traverser() ⇒
 Getter function that returns [Traverser](#Traverser).
 
 **Kind**: instance method of <code>[Tree](#Tree)</code>  
 **Returns**: [Traverser](#Traverser) for the tree.  
 <a name="Tree+isEmpty"></a>
+
 ### tree.isEmpty() ⇒ <code>boolean</code>
 Checks whether tree is empty.
 
 **Kind**: instance method of <code>[Tree](#Tree)</code>  
 **Returns**: <code>boolean</code> - whether tree is empty.  
 <a name="Tree+pruneAllNodes"></a>
+
 ### tree.pruneAllNodes() ⇒
 Empties the tree. Removes all nodes from tree.
 
 **Kind**: instance method of <code>[Tree](#Tree)</code>  
 **Returns**: [Tree](#Tree) empty tree.  
 <a name="Tree+insert"></a>
+
 ### tree.insert(data) ⇒ <code>object</code>
 Creates a [TreeNode](#TreeNode) that contains the data provided and insert it in a tree.
 New node gets inserted to the `_currentNode` which updates itself upon every insertion and deletion.
@@ -325,6 +350,7 @@ tree.insert({
 });
 ```
 <a name="Tree+remove"></a>
+
 ### tree.remove(node, trim)
 Removes a node from tree and updates `_currentNode` to parent node of node removed.
 
@@ -336,6 +362,7 @@ Removes a node from tree and updates `_currentNode` to parent node of node remov
 | trim | <code>boolean</code> | indicates whether to remove entire branch from the specified node. |
 
 <a name="Tree+trimBranchFrom"></a>
+
 ### tree.trimBranchFrom(node)
 Remove an entire branch starting with specified node.
 
@@ -346,6 +373,7 @@ Remove an entire branch starting with specified node.
 | node | <code>object</code> | [TreeNode](#TreeNode) from which entire branch has to be removed. |
 
 <a name="Tree+insertTo"></a>
+
 ### tree.insertTo(criteria, data) ⇒ <code>object</code>
 Inserts node to a particular node present in the tree. Particular node here is searched
 in the tree based on the criteria provided.
@@ -378,6 +406,7 @@ tree.insertTo(function(data){
 }, greenApple);
 ```
 <a name="Tree+insertToNode"></a>
+
 ### tree.insertToNode(node, data) ⇒ <code>object</code>
 Inserts node to a particular node present in the tree. Particular node here is an instance of [TreeNode](#TreeNode)
 
@@ -407,6 +436,7 @@ var greenApple = {
 tree.insertToNode(node, greenApple);
 ```
 <a name="Tree+distanceBetween"></a>
+
 ### tree.distanceBetween({@link, {@link) ⇒ <code>Number</code>
 Finds a distance between two nodes
 
@@ -419,6 +449,7 @@ Finds a distance between two nodes
 | {@link | TreeNode} toNode - Node to which distance is to be calculated |
 
 <a name="Tree+findCommonParent"></a>
+
 ### tree.findCommonParent({@link, {@link) ⇒
 Finds a common parent between nodes
 
@@ -431,6 +462,7 @@ Finds a common parent between nodes
 | {@link | TreeNode} toNode |
 
 <a name="Tree+export"></a>
+
 ### tree.export(criteria) ⇒ <code>object</code>
 Exports the tree data in format specified. It maintains herirachy by adding
 additional "children" property to returned value of `criteria` callback.
@@ -479,7 +511,15 @@ var exported = tree.export(function(data){
  ]
 }
 ```
+<a name="Tree+compress"></a>
+
+### tree.compress()
+Returns a new compressed tree. While compressing it considers nodes that
+satisfies given criteria and skips the rest of the nodes, making tree compressed.
+
+**Kind**: instance method of <code>[Tree](#Tree)</code>  
 <a name="Tree+import"></a>
+
 ### tree.import(data, childProperty, criteria) ⇒ <code>object</code>
 Imports the JSON data into a tree using the criteria provided.
 A property indicating the nesting of object must be specified.
@@ -530,6 +570,7 @@ var data = {
  });
 ```
 <a name="criteria"></a>
+
 ## criteria : <code>function</code>
 Callback that receives a node data in parameter and expects user to return one of following:
 1. [searchBFS](#Traverser+searchBFS) - {boolean} in return indicating whether given node satisfies criteria.

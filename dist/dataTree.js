@@ -850,6 +850,58 @@ module.exports = (function(){
     return this._rootNode.export(criteria);
   };
 
+  /**
+   * Returns a new compressed tree. While compressing it considers nodes that
+   * satisfies given criteria and skips the rest of the nodes, making tree compressed.
+   *
+   * @method compress
+   * @memberof Tree
+   * @instance
+   */
+  Tree.prototype.compress = function(criteria){
+
+    // Check if criteria is specified
+    if(!criteria || typeof criteria !== 'function')
+      throw new Error('Compress criteria not specified');
+
+    // Check if tree is not empty
+    if(this.isEmpty()){
+      return null;
+    }
+
+    // Create New Tree
+    var tree = new Tree();
+
+    // Hold `this`
+    var thiss = this;
+
+    // Recur DFS
+    (function recur(node, parent){
+
+      // Check-in
+      var checkIn = thiss.rootNode() === node || node.matchCriteria(criteria);
+
+      // Check if checked-in
+      if(checkIn){
+        if(tree.isEmpty()){
+          parent = tree.insert(node.data());
+        } else {
+          parent = tree.insertToNode(parent, node.data());
+        }
+      } else {
+        parent._data.hasCompressedNodes = true;
+      }
+
+      // For all child nodes
+      node.childNodes().forEach(function(_child){
+        recur(_child, parent);
+      });
+
+    }(this.rootNode(), null));
+
+    return tree;
+
+  };
 
   /**
    * Imports the JSON data into a tree using the criteria provided.

@@ -402,6 +402,8 @@ module.exports = (function(){
    * @method compress
    * @memberof Tree
    * @instance
+   * @param {Tree~criteria} criteria - Callback function that checks whether node satifies certain criteria. MUST return boolean.
+   * @return {@link Tree} - A new compressed tree.
    */
   Tree.prototype.compress = function(criteria){
 

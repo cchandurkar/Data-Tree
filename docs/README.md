@@ -132,7 +132,7 @@ Represents a node in the tree.
     * [new TreeNode(data)](#new_TreeNode_new)
     * [.parentNode()](#TreeNode+parentNode) ⇒ <code>[TreeNode](#TreeNode)</code>
     * [.childNodes()](#TreeNode+childNodes) ⇒ <code>array</code>
-    * [.data(_data)](#TreeNode+data) ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
+    * [.data(data)](#TreeNode+data) ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
     * [.depth()](#TreeNode+depth) ⇒ <code>number</code>
     * [.matchCriteria(callback)](#TreeNode+matchCriteria)
     * [.siblings()](#TreeNode+siblings) ⇒ <code>array</code>
@@ -164,7 +164,7 @@ Returns an array of child nodes
 **Returns**: <code>array</code> - - array of child nodes  
 <a name="TreeNode+data"></a>
 
-### treeNode.data(_data) ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
+### treeNode.data(data) ⇒ <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code>
 Sets or gets the data belonging to this node. Data is what user sets using `insert` and `insertTo` methods.
 
 **Kind**: instance method of <code>[TreeNode](#TreeNode)</code>  
@@ -172,7 +172,7 @@ Sets or gets the data belonging to this node. Data is what user sets using `inse
 
 | Param | Type | Description |
 | --- | --- | --- |
-| _data | <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code> | data which is to be stored |
+| data | <code>object</code> &#124; <code>array</code> &#124; <code>string</code> &#124; <code>number</code> &#124; <code>null</code> | data which is to be stored |
 
 <a name="TreeNode+depth"></a>
 
@@ -284,7 +284,7 @@ Represents the tree in which data nodes can be inserted
     * [.distanceBetween({@link, {@link)](#Tree+distanceBetween) ⇒ <code>Number</code>
     * [.findCommonParent({@link, {@link)](#Tree+findCommonParent) ⇒
     * [.export(criteria)](#Tree+export) ⇒ <code>object</code>
-    * [.compress()](#Tree+compress)
+    * [.compress(criteria)](#Tree+compress) ⇒
     * [.import(data, childProperty, criteria)](#Tree+import) ⇒ <code>object</code>
 
 <a name="Tree+rootNode"></a>
@@ -513,11 +513,17 @@ var exported = tree.export(function(data){
 ```
 <a name="Tree+compress"></a>
 
-### tree.compress()
+### tree.compress(criteria) ⇒
 Returns a new compressed tree. While compressing it considers nodes that
 satisfies given criteria and skips the rest of the nodes, making tree compressed.
 
 **Kind**: instance method of <code>[Tree](#Tree)</code>  
+**Returns**: [Tree](#Tree) - A new compressed tree.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| criteria | <code>Tree~criteria</code> | Callback function that checks whether node satifies certain criteria. MUST return boolean. |
+
 <a name="Tree+import"></a>
 
 ### tree.import(data, childProperty, criteria) ⇒ <code>object</code>

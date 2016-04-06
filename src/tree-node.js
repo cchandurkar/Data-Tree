@@ -88,10 +88,10 @@ module.exports = (function(){
    * @method data
    * @memberof TreeNode
    * @instance
-   * @param {object | array | string | number | null} _data - data which is to be stored
+   * @param {object | array | string | number | null} data - data which is to be stored
    * @return {object | array | string | number | null} - data belonging to this node
    */
-  TreeNode.prototype.data = function(_data){
+  TreeNode.prototype.data = function(data){
     if(arguments.length > 0){
       this._data = data;
     } else {

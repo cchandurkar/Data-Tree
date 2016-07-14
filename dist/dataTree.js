@@ -1,13 +1,30 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function (global){
 var Tree = require('./src/tree');
-module.exports = dataTree = (function(){
-  return {
+
+(function(){
+
+  // Wrap Data Tree Instance Creation
+  var dataTree = {
     create: function(){
       return new Tree();
     }
   };
+
+  // Export
+  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+      module.exports = dataTree;
+    } else {
+      if(typeof define === 'function' && define.amd){
+        define([], function() { return dataTree; });
+      } else {
+        window.dataTree = dataTree;
+      }
+    } if(typeof global !== 'undefined') global.dataTree = dataTree;
+
 }());
 
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./src/tree":4}],2:[function(require,module,exports){
 
 module.exports = (function(){
@@ -263,10 +280,10 @@ module.exports = (function(){
    * @method data
    * @memberof TreeNode
    * @instance
-   * @param {object | array | string | number | null} _data - data which is to be stored
+   * @param {object | array | string | number | null} data - data which is to be stored
    * @return {object | array | string | number | null} - data belonging to this node
    */
-  TreeNode.prototype.data = function(_data){
+  TreeNode.prototype.data = function(data){
     if(arguments.length > 0){
       this._data = data;
     } else {
@@ -857,6 +874,8 @@ module.exports = (function(){
    * @method compress
    * @memberof Tree
    * @instance
+   * @param {Tree~criteria} criteria - Callback function that checks whether node satifies certain criteria. MUST return boolean.
+   * @return {@link Tree} - A new compressed tree.
    */
   Tree.prototype.compress = function(criteria){
 

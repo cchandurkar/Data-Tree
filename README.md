@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/cchandurkar/Data-Tree.svg?branch=master)](https://travis-ci.org/cchandurkar/Data-Tree) [![npm version](https://badge.fury.io/js/data-tree.svg)](https://badge.fury.io/js/data-tree) [![Dependency Status](https://david-dm.org/cchandurkar/data-tree.svg)](https://david-dm.org/cchandurkar/data-tree) [![devDependency Status](https://david-dm.org/cchandurkar/data-tree/dev-status.svg)](https://david-dm.org/cchandurkar/data-tree#info=devDependencies) [![Gitter](https://badges.gitter.im/cchandurkar/Data-Tree.svg)](https://gitter.im/cchandurkar/Data-Tree?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Data Tree
+
+[![Join the chat at https://gitter.im/cchandurkar/Data-Tree](https://badges.gitter.im/cchandurkar/Data-Tree.svg)](https://gitter.im/cchandurkar/Data-Tree?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Data oriented tree structure that unleashes the power of callbacks to create, search and traverse tree. Data tree keeps the track of current node which updates upon insertion and deletion of the node from tree.
 
 <img height="120" width="120" src="http://cchandurkar.github.io/data-tree/icon/icon.png"/>

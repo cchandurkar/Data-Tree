@@ -254,6 +254,7 @@ module.exports = (function(){
    */
   Tree.prototype.insertTo = function(criteria, data){
     var node = this.traverser().searchDFS(criteria);
+    if (node==null) return null;
     return this.insertToNode(node, data);
   };
 
@@ -284,6 +285,7 @@ module.exports = (function(){
    * tree.insertToNode(node, greenApple);
    */
   Tree.prototype.insertToNode = function(node, data){
+    if (node==null) return null;
     var newNode = new TreeNode(data);
     newNode._parentNode = node;
     newNode._depth = newNode._parentNode._depth + 1;
